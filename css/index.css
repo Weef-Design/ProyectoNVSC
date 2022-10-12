@@ -1,0 +1,139 @@
+/* Link Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* <----------------------- Reset -----------------------> */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+li {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+ul {
+    margin-bottom: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    margin-bottom: 0;
+}
+
+/* <----------------------- Menu -----------------------> */
+
+.menu {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, auto);
+}
+
+.menu-logo {
+    grid-column: 2/3;
+    display: flex;
+    justify-content: center;
+}
+
+.menu-logo img {
+    width: 300px;
+}
+
+.menu-nav {
+    grid-column: 1/4;
+}
+
+.menu-nav ul {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: black;
+    border-top: 5px solid #ff9c00;
+}
+
+.menu-nav ul li {
+    margin: 1rem;
+}
+
+.menu-nav ul li a {
+    color: white;
+    padding: 14px;
+}
+
+.menu-nav ul li a:hover {
+    border-bottom: 2px solid #ff9c00;
+}
+
+.menu-login {
+    display: flex;
+
+}
+
+.menu-login ul {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.menu-login ul li {
+    padding-right: 2rem;
+}
+
+.menu-login ul li a .cart {
+    margin-right: 3rem;
+}
+
+/* <----------------------- Slider Carousel -----------------------> */
+
+
+/* <----------------------- Products -----------------------> */
+
+.product {
+    margin: 0 10rem 0 10rem;
+    display: grid;
+    gap: 1rem;
+    grid-auto-flow: column;
+    grid-auto-columns: 17%;
+
+    overflow-x: auto;
+}
+
+.recommended h2 {
+    text-align: center;
+    padding: 2rem;
+
+}
+
+.product .product-card {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.product .product-card img {
+    width: 200px;
+}
+
+.product .product-card .product-img {
+    height: 80%;
+}
+
+.product .product-card .product-title, .product-price {
+    text-align: start;
+    font-weight: 400;
+}
+
+.product .product-card .product-title {
+    text-align: start;
+    font-weight: 600;
+}
+
+

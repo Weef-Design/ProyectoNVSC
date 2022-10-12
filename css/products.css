@@ -1,0 +1,16 @@
+main {
+    display: flex;
+    flex-flow: wrap;
+    justify-content: center;
+    margin: 0 20rem;
+}
+
+main img {
+    max-width: 300px;
+    padding: 1rem;
+}
+
+.aside{
+    position: absolute;
+    margin-top: 10rem;
+}
