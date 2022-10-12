@@ -15,8 +15,15 @@ if(mysqli_num_rows($result) == 1){
 
         header('location: ../pages/dashboard.html');	
         
+    }elseif ($tipoUsuario['Tipo'] == 'C'){
+        header('location: ../pages/dashboard.html');
+
+    }elseif ($tipoUsuario['Tipo'] == 'V'){
+        header('location: ../pages/dashboard.html');
+
     }elseif ($tipoUsuario['Tipo'] == 'U'){
         header('location: ../index.html');
+
     }
     
 }
