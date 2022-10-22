@@ -19,7 +19,7 @@
       <form id="frmLOGIN" action="../sql/login.php" method="post">
 
         <div class="tituloRegistro">
-          <a href="../index.html"><img class="mb-4" src="../img/LOGO NATALIA VIERA.png" alt="" width="200" height="50"
+          <a href="../index.php"><img class="mb-4" src="../assets/LOGO NATALIA VIERA.png" alt="" width="200" height="50"
               alt="Imágen del logo Natalia Viera"></img></a>
           <h1 class="h3 mb-3 fw-normal">Inicio de Sesión</h1>
       </div>
@@ -31,7 +31,7 @@
           
         <br>
         <input class="w-100 btn btn-lg btn-warning" type="button" value="Iniciar Sesión" id="userLogin">
-        <p>¿Aún no tienes cuenta? <a href="../pages/registrar.html">Registrate</a></p>
+        <p>¿Aún no tienes cuenta? <a href="./registrar.php">Registrate</a></p>
         <p class="mt-5 mb-3 text-muted">&copy; 2022 Natalia Viera Seguridad Corporal. Todos los derechos reservados.</p>
       </form>
 

@@ -1,5 +1,5 @@
 <?php
-include "../sql/connect.inc";
+include "../sql/_conexion.php";
 
 $userEmail = $_POST["userEmail"];
 $userPassword = $_POST["userPassword"];

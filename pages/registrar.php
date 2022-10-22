@@ -22,7 +22,7 @@
         <form id="frmAltaUsuario" action="../sql/altaUsuario.php" method="post">
 
             <div class="tituloRegistro">
-                <a href="../index.html"><img class="mb-4" src="../img/LOGO NATALIA VIERA.png" alt="" width="200" height="50"
+                <a href="../index.php"><img class="mb-4" src="../assets/LOGO NATALIA VIERA.png" alt="" width="200" height="50"
                     alt="Imágen del logo Natalia Viera"></img></a>
                 <h1 class="h3 mb-3 fw-normal">Crear Cuenta</h1>
             </div>
