@@ -6,15 +6,18 @@
                             <a href="index.php" class="nav-link">Inicio</a>
                         </li>
                         <li class="nav-item d-none d-sm-inline-block">
-                            <a href="#" class="nav-link">Contacto</a>
+                            <a href="index.php?modulo=contacto" class="nav-link">Contacto</a>
+                        </li>
+                        <li class="nav-item d-none d-sm-inline-block">
+                            <a href="index.php?modulo=allproductos" class="nav-link">Productos</a>
                         </li>
                     </ul>
 
                     <!-- SEARCH FORM -->
                     <form class="form-inline ml-3" action="index.php">
                         <div class="input-group input-group-sm">
-                            <input class="form-control form-control-navbar bg-gray" type="search" placeholder="Search" aria-label="Search" name="nombre" value="<?php echo $_REQUEST['nombre'] ?? ''; ?>">
-                            <input type="hidden" name="modulo" value="productos">
+                            <input class="form-control form-control-navbar bg-gray" type="search" placeholder="Buscar" aria-label="Search" name="nombre" value="<?php echo $_REQUEST['nombre'] ?? ''; ?>">
+                            <input type="hidden" name="modulo" value="allproductos">
                             <div class="input-group-append">
                                 <button class="btn btn-navbar" type="submit">
                                     <i class="fas fa-search"></i>
@@ -37,18 +40,18 @@
                         </li>
                         <!-- Notifications Dropdown Menu -->
                         <li class="nav-item dropdown">
-                            <a class="nav-link" data-toggle="dropdown" href="login.php">
+                            <a class="nav-link" data-toggle="dropdown" href="./pages/login.php">
                                 <i class="fa fa-user" aria-hidden="true"></i>
                             </a>
                             <div class="dropdown-menu dropdown-menu-md dropdown-menu-right">
                                 <?php
                                 if (isset($_SESSION['idUsuario']) == false) {
                                 ?>
-                                    <a href="./admin/login.php" class="dropdown-item">
+                                    <a href="./pages/login.php" class="dropdown-item">
                                         <i class="fas fa-door-open mr-2 text-primary"></i>Loguearse
                                     </a>
                                     <div class="dropdown-divider"></div>
-                                    <a href="./admin/registro.php" class="dropdown-item">
+                                    <a href="./pages/registro.php" class="dropdown-item">
                                         <i class="fas fa-sign-in-alt mr-2 text-primary"></i>Registrarse
                                     </a>
                                 <?php
@@ -58,10 +61,15 @@
                                         <i class="fas fa-user text-primary mr-2"></i>Hola <?php echo $_SESSION['nombreUsuario']; ?>
                                     </a>
                                     <div class="dropdown-divider"></div>
-                                    <!-- Falta Validar Tipo Usuario -->
+                                <?php
+                                if (isset($_SESSION['tipoUsuario']) == 'J' || ($_SESSION['tipoUsuario']) == 'C' || ($_SESSION['tipoUsuario']) == 'V'){
+                                ?>
                                     <a href="./admin/dashboard.php" class="dropdown-item">
                                         <i class="fas fa-chart-bar mr-2 text-warning"></i>Dashboard
                                     </a>
+                                <?php 
+                                } 
+                                ?>
                                     <div class="dropdown-divider"></div>
                                     <form action="index.php" method="post">
                                         <button name="accion" class="btn btn-danger dropdown-item" type="submit" value="cerrar">

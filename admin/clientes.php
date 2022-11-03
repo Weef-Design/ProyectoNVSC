@@ -1,14 +1,27 @@
 <?php
 include_once "conectDB.php";
 $con = mysqli_connect($host, $user, $pass, $db);
-if (isset($_REQUEST['idBorrar'])) {
-    $id = mysqli_real_escape_string($con, $_REQUEST['idBorrar'] ?? '');
-    $query = "DELETE from TelefonoUsuario where ID_Usuario='" . $id . "';";
-    $queryii = "DELETE from Usuario where ID_Usuario='" . $id . "';";
+if (isset($_REQUEST['idEstado'])) {
+    $id = mysqli_real_escape_string($con, $_REQUEST['idEstado'] ?? '');
+    $query = "UPDATE Usuario SET Estado=1 where ID_Usuario='" . $id . "';";
     $res = mysqli_query($con, $query);
-    $resii = mysqli_query($con, $queryii);
-    if ($res and $resii) {
-        echo '<meta http-equiv="refresh" content="0; url=dashboard.php?modulo=empleados&mensaje=Usuario eliminado exitosamente." />  ';
+    if ($res) {
+        echo '<meta http-equiv="refresh" content="0; url=dashboard.php?modulo=clientes&mensaje=Usuario Activado exitosamente." />  ';
+    } else {
+    ?>
+        <div class="alert alert-danger float-right" role="alert">
+            Error al borrar <?php echo mysqli_error($con); ?>
+        </div>
+<?php
+    }
+}
+
+if (isset($_REQUEST['idEstadoII'])) {
+    $id = mysqli_real_escape_string($con, $_REQUEST['idEstadoII'] ?? '');
+    $query = "UPDATE Usuario SET Estado=0 where ID_Usuario='" . $id . "';";
+    $res = mysqli_query($con, $query);
+    if ($res) {
+        echo '<meta http-equiv="refresh" content="0; url=dashboard.php?modulo=clientes&mensaje=Usuario Desactivado exitosamente." />  ';
     } else {
     ?>
         <div class="alert alert-danger float-right" role="alert">
@@ -66,10 +79,10 @@ if (isset($_REQUEST['idBorrar'])) {
                                         <td class="col-4"><?php echo $row['Email'] ?></td>
                                         <td class="col-2"><?php echo $row['FechaRegistro'] ?></td>
                                         <td class="col-1">
-                                            <a href="dashboard.php?modulo=editEmpleados&id=<?php echo $row['ID_Usuario'] ?>" style="margin-right:5px"><i class="fa fa-check text-success"></i></a>
+                                            <a href="dashboard.php?modulo=clientes&idEstado=<?php echo $row['ID_Usuario'] ?>" style="margin-right:5px"><i class="fa fa-check text-success"></i></a>
                                         </td>
                                         <td class="col-1">
-                                            <a href="dashboard.php?modulo=empleados&idBorrar=<?php echo $row['ID_Usuario'] ?>" class="text-danger borrar"><i class="fa-solid fa-xmark"></i></a>
+                                            <a href="dashboard.php?modulo=clientes&idEstadoII=<?php echo $row['ID_Usuario'] ?>" class="text-danger borrar"><i class="fa-solid fa-xmark"></i></a>
                                         </td>
                                     </tr>
 

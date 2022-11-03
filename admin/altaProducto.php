@@ -7,8 +7,8 @@ if (isset($_REQUEST['agregarProducto'])) {
   $productNombre = $_POST["productNombre"];
   $productPrecio = $_POST["productPrecio"];
   $productStock = $_POST["productStock"];
-  $productTalle = $_POST["productTalle"]?? '';
-  $productDesc = $_POST["productDesc"]?? '';
+  $productTalle = $_POST["productTalle"] ?? '';
+  $productDesc = $_POST["productDesc"] ?? '';
 
   $archivo = $_FILES['productImage']['name'];
   if (isset($archivo) && $archivo != "") {

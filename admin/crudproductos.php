@@ -126,7 +126,8 @@ if (isset($_REQUEST['idBorrar'])) {
                                 $con = mysqli_connect($host, $user, $pass, $db);
                                 $query = "select * from Producto P 
                                 join Categoria C on C.ID_Categoria=P.ID_Categoria
-                                join Proveedor Pr on Pr.ID_Proveedor=P.ID_Proveedor;";
+                                join Proveedor Pr on Pr.ID_Proveedor=P.ID_Proveedor
+                                ;";
                                 $res = mysqli_query($con, $query);
 
                                 while ($row = mysqli_fetch_array($res)) {
@@ -140,8 +141,8 @@ if (isset($_REQUEST['idBorrar'])) {
                                         <td class="col-2"><?php echo $row['Nombre_Categoria'] ?></td>
                                         <td class="col-2"><?php echo $row['Nombre_Proveedor'] ?></td>
                                         <td class="col-2">
-                                            <a href="dashboard.php?modulo=editproductos&id=<?php echo $row['ID_Producto'] ?>" style="margin-right:5px"><i class="fa fa-pen"></i></a>
-                                            <a href="dashboard.php?modulo=crudproductos&idBorrar=<?php echo $row['ID_Producto'] ?>" class="text-danger borrar"><i class="fa fa-user-minus"></i></a>
+                                            <a href="dashboard.php?modulo=editproductos&id=<?php echo $row['ID_Producto'] ?>"   style="margin-right:5px" title="Modificar Producto"><i class="fa fa-pen"></i></a>
+                                            <a href="dashboard.php?modulo=crudproductos&idBorrar=<?php echo $row['ID_Producto'] ?>" title="Eliminar Producto" class="text-danger borrarProducto"><i class="fa fa-user-minus"></i></a>
                                         </td>
                                     </tr>
 

@@ -7,20 +7,16 @@ if (isset($_REQUEST['guardar'])) {
     $pass = md5(mysqli_real_escape_string($con, $_REQUEST['pass'] ?? ''));
     $nombre = mysqli_real_escape_string($con, $_REQUEST['nombre'] ?? '');
     $tel = mysqli_real_escape_string($con, $_REQUEST['tel'] ?? '');
+    $dir = mysqli_real_escape_string($con, $_REQUEST['dir'] ?? '');
     $id = mysqli_real_escape_string($con, $_REQUEST['id'] ?? '');
 
     $query = "UPDATE Usuario SET
-        Email='" . $email . "',Contrasenia='" . $pass . "',NombreUsuario='" . $nombre . "'
+        Email='" . $email . "',Contrasenia='" . $pass . "',NombreUsuario='" . $nombre . "',Direccion='" . $dir . "',Telefono='" . $tel . "'
         where ID_Usuario='" . $id . "';
     ";
-    $queryii = "UPDATE TelefonoUsuario SET
-        Telefono='" . $tel . "'
-        where ID_Usuario='" . $id . "';
-        ";
 
     $res = mysqli_query($con, $query);
-    $resii = mysqli_query($con, $queryii);
-    if ($res and $resii) {
+    if ($res) {
         echo '<meta http-equiv="refresh" content="0; url=dashboard.php?modulo=empleados&mensaje=Usuario ' . $nombre . ' editado exitosamente" />  ';
     } else {
 ?>
@@ -31,9 +27,8 @@ if (isset($_REQUEST['guardar'])) {
     }
 }
 $id = mysqli_real_escape_string($con, $_REQUEST['id'] ?? '');
-$query = "SELECT U.ID_Usuario,Email,Contrasenia,NombreUsuario,Telefono from Usuario U
-            join TelefonoUsuario T on T.ID_Usuario=U.ID_Usuario
-            where U.ID_Usuario='" . $id . "'; ";
+$query = "SELECT * from Usuario
+            where ID_Usuario='" . $id . "'; ";
 $res = mysqli_query($con, $query);
 $row = mysqli_fetch_assoc($res);
 ?>
@@ -78,6 +73,12 @@ $row = mysqli_fetch_assoc($res);
                                     <div class="col-md-6">
                                         <label for="userPassword" class="form-label">Contraseña</label>
                                         <input type="password" class="form-control" name="pass" id="pass" required="required" >
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="dir" class="form-label">Dirección</label>
+                                        <input type="text" class="form-control" name="dir" id="dir" value="<?php echo $row['Direccion'] ?>" required="required">
                                     </div>
                                 </div>
                                 <br>

@@ -3,11 +3,11 @@
   session_regenerate_id(true);
   if( isset($_REQUEST['sesion']) && $_REQUEST['sesion']=="cerrar" ){
     session_destroy();
-    header("location: login.php");
+    header("location: ../pages/login.php");
   }
   if(isset($_SESSION['idUsuario'])==false){
 
-    header("location: login.php");
+    header("location: ../pages/login.php");
   }
   $modulo=$_REQUEST['modulo']??'';
 ?>
@@ -126,7 +126,7 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="dashboard.php?modulo=crudproductos" class="nav-link <?php echo ($modulo=="crudproductos" || $modulo=="editproductos")?" active ":" "; ?>">
+                  <a href="dashboard.php?modulo=crudproductos" class="nav-link <?php echo ($modulo=="crudproductos" || $modulo=="editproductos" || $modulo=="agregartalle")?" active ":" "; ?>">
                     <i class="fa fa-shopping-bag nav-icon"></i>
                     <p>Productos</p>
                   </a>
@@ -221,6 +221,18 @@
     $(".borrar").click(function (e) { 
       e.preventDefault();
       var res=confirm("¿Está seguro que quieres eliminar este usuario?");
+      if(res==true){
+        var link=$(this).attr("href");
+        window.location=link;
+      }
+      
+    });
+  });
+
+  $(document).ready(function () {
+    $(".borrarProducto").click(function (e) { 
+      e.preventDefault();
+      var res=confirm("¿Está seguro que quieres eliminar este producto?");
       if(res==true){
         var link=$(this).attr("href");
         window.location=link;

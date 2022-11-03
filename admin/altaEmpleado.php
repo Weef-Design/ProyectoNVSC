@@ -8,36 +8,22 @@ $userPassword = md5($userPassword);
 $userName = $_POST["userName"];
 $fechaActual = date('y-m-d');
 $userTipo = $_POST["userTipo"];
-
 $userPhone = $_POST["userPhone"];
+$userDir = $_POST["userDir"];
 
-$sql = "INSERT INTO Usuario(Email, Contrasenia, NombreUsuario, Estado, FechaRegistro, Tipo) 
-        VALUE ('$userEmail','$userPassword','$userName',1,'$fechaActual','$userTipo');";
+$query = "INSERT INTO Usuario(Email, Contrasenia, NombreUsuario, Estado, FechaRegistro, Tipo, Direccion, Telefono) 
+        VALUE ('$userEmail','$userPassword','$userName',1,'$fechaActual','$userTipo','$userDir','$userPhone');";
 
-$sql.= "INSERT INTO TelefonoUsuario(Telefono)
-        VALUE ('$userPhone');";
+$res = mysqli_query($con, $query);
 
-if ($con->multi_query($sql)) {
-  do {
-    /* almacenar primer juego de resultados */
-    if ($result = $con->store_result()) {
-      while ($row = $result->fetch_row()) {
-        printf("%s\n", $row[0]);
-      }
-      $result->free();
-    }
-    /* mostrar divisor */
-    if ($con->more_results()) {
-      printf("-----------------\n");
-    }
-  } while ($con->next_result());
-} else {
-  echo "Error: " . $sql . "<br>" . $con->error;
-}
-
-$con->close();
-
-header("Location: dashboard.php?modulo=empleados");
-
-
+  if ($res) {
+    echo '<meta http-equiv="refresh" content="0; url=dashboard.php?modulo=empleados&mensaje=Usuario añadido exitosamente" />  ';
+  } else {
 ?>
+    <div class="alert alert-danger" role="alert">
+      Error al agregar empleado.<?php echo mysqli_error($con); ?>
+    </div>
+<?php
+  }
+?>
+

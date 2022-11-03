@@ -42,28 +42,32 @@ $con = mysqli_connect($host, $user, $pass, $db);
                 <?php
                 include_once "./pages/menu.php";
                 $modulo=$_REQUEST['modulo']??'';
-                /*
-                if($modulo=="productos" || $modulo=="" ){
-                    include_once "./pages/productosMenu.php";
+                
+                if($modulo=="allproductos"){
+                    include_once "./pages/allproductos.php";
                 }
-
+                if($modulo=="contacto"){
+                    include_once "./pages/contacto.php";
+                }
                 if( $modulo=="detalleproducto" ){
-                    include_once "detalleProducto.php";
+                    include_once "./pages/detalleproducto.php";
                 }
+                
                 if( $modulo=="carrito" ){
-                    include_once "carrito.php";
+                    include_once "./pages/carrito.php";
                 }
                 if( $modulo=="envio" ){
-                    include_once "envio.php";
+                    include_once "./pages/envio.php";
                 }
                 if( $modulo=="pasarela" ){
-                    include_once "pasarela.php";
+                    include_once "./pages/pasarela.php";
                 }
                 if( $modulo=="factura" ){
-                    include_once "factura.php";
+                    include_once "./pages/factura.php";
                 }
-                */
+                
                 ?>
+                
             </div>
         </div>
     </div>
@@ -81,7 +85,7 @@ $con = mysqli_connect($host, $user, $pass, $db);
     <script src="admin/dist/js/pages/dashboard.js"></script>
     <script src="https://js.stripe.com/v3/"></script>
     <script src="admin/js/stripe.js"></script>
-    <script src="admin/js/ecommerce.js"></script>
+    <script src="js/ecommerce.js"></script>
     
 </body>
 

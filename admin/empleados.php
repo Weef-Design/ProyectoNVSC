@@ -3,11 +3,9 @@ include_once "conectDB.php";
 $con = mysqli_connect($host, $user, $pass, $db);
 if (isset($_REQUEST['idBorrar'])) {
     $id = mysqli_real_escape_string($con, $_REQUEST['idBorrar'] ?? '');
-    $query = "DELETE from TelefonoUsuario where ID_Usuario='" . $id . "';";
-    $queryii = "DELETE from Usuario where ID_Usuario='" . $id . "';";
+    $query = "DELETE from Usuario where ID_Usuario='" . $id . "';";
     $res = mysqli_query($con, $query);
-    $resii = mysqli_query($con, $queryii);
-    if ($res and $resii) {
+    if ($res) {
         echo '<meta http-equiv="refresh" content="0; url=dashboard.php?modulo=empleados&mensaje=Usuario eliminado exitosamente." />  ';
     } else {
     ?>
@@ -66,6 +64,10 @@ if (isset($_REQUEST['idBorrar'])) {
                                                     </div>
                                                 </div>
                                                 <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label for="userDir" class="form-label">Dirección</label>
+                                                        <input type="email" class="form-control" name="userDir" id="userDir" required="required">
+                                                    </div>
                                                     <div class="col-md-6">
                                                         <label for="userEmail" class="form-label">Tipo de Empleado</label>
                                                         <select class="form-control" name="userTipo" id="userTipo">

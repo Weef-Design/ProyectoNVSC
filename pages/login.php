@@ -4,18 +4,18 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>My ecommerce</title>
+  <title>Natalia Viera | Login</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="../admin/plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- icheck bootstrap -->
-  <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <link rel="stylesheet" href="../admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="../admin/dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
@@ -35,25 +35,26 @@
           $email = $_REQUEST['email'] ?? '';
           $pasword = $_REQUEST['pass'] ?? '';
           $pasword = md5($pasword);
-          include_once "conectDB.php";
+          include_once "../admin/conectDB.php";
           $con = mysqli_connect($host, $user, $pass, $db);
-          $query = "SELECT * FROM Usuario WHERE Email = '$email' and Contrasenia = '$pasword'";
+          $query = "SELECT * FROM Usuario WHERE Email = '$email' and Contrasenia = '$pasword' and Estado=1";
           $res = mysqli_query($con, $query);
           if(mysqli_num_rows($res) == 1){ 
             $row = mysqli_fetch_assoc($res);
             $_SESSION['idUsuario'] = $row['ID_Usuario'];
             $_SESSION['emailUsuario'] = $row['Email'];
             $_SESSION['nombreUsuario'] = $row['NombreUsuario'];
+            $_SESSION['tipoUsuario'] = $row['Tipo'];
 
             if ($row['Tipo'] == 'J') {
         
-              header("location: dashboard.php?mensaje=Usuario logueado exitosamente");	
+              header("location: ../admin/dashboard.php?mensaje=Usuario logueado exitosamente");	
                 
             }elseif ($row['Tipo'] == 'C'){
-              header("location: dashboard.php?mensaje=Usuario logueado exitosamente");
+              header("location: ../admin/dashboard.php?mensaje=Usuario logueado exitosamente");
         
             }elseif ($row['Tipo'] == 'V'){
-              header("location: dashboard.php?mensaje=Usuario logueado exitosamente");
+              header("location: ../admin/dashboard.php?mensaje=Usuario logueado exitosamente");
         
             }elseif ($row['Tipo'] == 'U'){
               header("location: ../index.php?mensaje=Usuario logueado exitosamente");
@@ -61,8 +62,8 @@
             }
         } else {
         ?>
-            <div class="alert alert-danger" role="alert">
-              Error de login
+            <div class="alert alert-warning" role="alert">
+              Credenciales no válidas/Usuario no activado.
             </div>
         <?php
           }
@@ -101,11 +102,11 @@
     <!-- /.login-box -->
 
     <!-- jQuery -->
-    <script src="plugins/jquery/jquery.min.js"></script>
+    <script src="../admin/plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
-    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
-    <script src="dist/js/adminlte.min.js"></script>
+    <script src="../admin/dist/js/adminlte.min.js"></script>
 
 </body>
 
