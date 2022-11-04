@@ -122,7 +122,7 @@ SELECT ID_Producto,Nombre_Producto,Precio from Producto where Stock>0;
         
         -- Busqueda de palabra/coincidencia --
 SELECT ID_Producto, Nombre_Producto, Precio, Ruta_Imagen ,Stock 
-FROM Producto where 1=1 and Nombre_Producto like '%Bota%';
+FROM Producto where 1=1 and Nombre_Producto like '%Ca%';
 
 
 

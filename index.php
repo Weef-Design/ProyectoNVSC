@@ -4,6 +4,10 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Last-Modified" content="0">
+    <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
+    <meta http-equiv="Pragma" content="no-cache">
     <title>Natalia Viera SC | Inicio</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -73,19 +77,20 @@ $con = mysqli_connect($host, $user, $pass, $db);
     </div>
 
     <!-- jQuery UI 1.11.4 -->
-    <script src="admin/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <script src="./js/jquery-3.6.0.js"></script>
+    <script src="./admin/plugins/jquery-ui/jquery-ui.min.js"></script>
     <!-- Bootstrap 4 -->
-    <script src="admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="./admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- daterangepicker -->
-    <script src="admin/plugins/moment/moment.min.js"></script>
-    <script src="admin/plugins/daterangepicker/daterangepicker.js"></script>
+    <script src="./admin/plugins/moment/moment.min.js"></script>
+    <script src="./admin/plugins/daterangepicker/daterangepicker.js"></script>
     <!-- AdminLTE App -->
-    <script src="admin/dist/js/adminlte.js"></script>
+    <script src="./admin/dist/js/adminlte.js"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="admin/dist/js/pages/dashboard.js"></script>
-    <script src="https://js.stripe.com/v3/"></script>
-    <script src="admin/js/stripe.js"></script>
-    <script src="js/ecommerce.js"></script>
+    <script src="./admin/dist/js/pages/dashboard.js"></script>
+    <!-- <script src="https://js.stripe.com/v3/"></script>
+    <script src="./admin/js/stripe.js"></script> -->
+    <script src="./js/carrito.js"></script>
     
 </body>
 

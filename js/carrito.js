@@ -211,12 +211,11 @@ $(document).ready(function () {
         var emailCli=$("#emailCli").val();
         var direccionCli=$("#direccionCli").val();
         var telefonoCli=$("#telefonoCli").val();
-        
         if( $(this).prop("checked")==true ){
             $("#nombreRec").val(nombreCli);
             $("#emailRec").val(emailCli);
             $("#direccionRec").val(direccionCli);
-            $("#telefonoCli").val(telefonoCli);
+            $("#telefonoRec").val(telefonoCli);
         }else{
             $("#nombreRec").val(nombreRec);
             $("#emailRec").val(emailRec);

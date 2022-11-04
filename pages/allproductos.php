@@ -1,10 +1,9 @@
 <div class="row mt-1">
     <?php
-    $where = " where 1=1 ";
+    
     $nombre = mysqli_real_escape_string($con, $_REQUEST['nombre'] ?? '');
-    if (empty($nombre) == false) {
-        $where = "and Nombre_Producto like '%" . $nombre . "%'";
-    }
+    $where = " where 1=1 and Nombre_Producto like '%" . $nombre . "%'";
+    
     $queryCuenta = "SELECT COUNT(*) as cuenta FROM Producto  $where ;";
     $resCuenta = mysqli_query($con, $queryCuenta);
     $rowCuenta = mysqli_fetch_assoc($resCuenta);

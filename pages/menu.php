@@ -61,16 +61,16 @@
                                         <i class="fas fa-user text-primary mr-2"></i>Hola <?php echo $_SESSION['nombreUsuario']; ?>
                                     </a>
                                     <div class="dropdown-divider"></div>
-                                <?php
-                                if (isset($_SESSION['tipoUsuario']) == 'J' || ($_SESSION['tipoUsuario']) == 'C' || ($_SESSION['tipoUsuario']) == 'V'){
-                                ?>
+                                
+                                <?php if($_SESSION['tipoUsuario'] == 'J' || $_SESSION['tipoUsuario'] == 'C' || $_SESSION['tipoUsuario'] == 'V' ){ ?>
+                                
                                     <a href="./admin/dashboard.php" class="dropdown-item">
                                         <i class="fas fa-chart-bar mr-2 text-warning"></i>Dashboard
                                     </a>
+                                    <div class="dropdown-divider"></div>
                                 <?php 
                                 } 
                                 ?>
-                                    <div class="dropdown-divider"></div>
                                     <form action="index.php" method="post">
                                         <button name="accion" class="btn btn-danger dropdown-item" type="submit" value="cerrar">
                                             <i class="fas fa-door-closed text-danger mr-2"></i>Cerrar sesión

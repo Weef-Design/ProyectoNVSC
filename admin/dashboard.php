@@ -64,7 +64,7 @@
       <ul class="navbar-nav ml-auto">
 
         <!-- Edit perfil -->
-          <a class="nav-link" href="dashboard.php?modulo=editEmpleados&id=<?php echo $_SESSION['idUsuario']; ?>" title="Editar Perfil">
+          <a class="nav-link" href="dashboard.php?modulo=editEmpleado&id=<?php echo $_SESSION['idUsuario']; ?>" title="Editar Perfil">
             <i class="fas fa-user text-primary"></i>
           </a>
         <!-- Cerrar Sesion -->
@@ -107,36 +107,46 @@
                 </p>
               </a>
               <ul class="nav nav-treeview">
+            <?php if ($_SESSION['tipoUsuario'] == "J" || $_SESSION['tipoUsuario'] == "V") { ?>
               <li class="nav-item">
                   <a href="dashboard.php?modulo=estadisticas" class="nav-link <?php echo ($modulo=="estadisticas" || $modulo=="" )?" active ":" "; ?>">
                     <i class="fas fa-chart-bar nav-icon"></i>
                     <p>Estadísticas</p>
                   </a>
                 </li>
+                <?php } ?>
+                <?php if ($_SESSION['tipoUsuario'] == "J") { ?>
                 <li class="nav-item">
-                  <a href="dashboard.php?modulo=empleados" class="nav-link<?php echo ($modulo=="empleados" || $modulo=="editEmpleados")?" active ":" "; ?>">
+                  <a href="dashboard.php?modulo=empleados" class="nav-link<?php echo ($modulo=="empleados" || $modulo=="editEmpleado")?" active ":" "; ?>">
                     <i class="fa fa-user-tie nav-icon"></i>
                     <p>Empleados</p>
                   </a>
                 </li>
+                <?php } ?>
+                <?php if ($_SESSION['tipoUsuario'] == "J" || $_SESSION['tipoUsuario'] == "V") { ?>
                 <li class="nav-item">
                   <a href="dashboard.php?modulo=clientes" class="nav-link<?php echo ($modulo=="clientes")?" active ":" "; ?>">
                     <i class="fa fa-users nav-icon"></i>
                     <p>Clientes</p>
                   </a>
                 </li>
+                <?php } ?>
+                <?php if ($_SESSION['tipoUsuario'] == "J" || $_SESSION['tipoUsuario'] == "C") { ?>
                 <li class="nav-item">
                   <a href="dashboard.php?modulo=crudproductos" class="nav-link <?php echo ($modulo=="crudproductos" || $modulo=="editproductos" || $modulo=="agregartalle")?" active ":" "; ?>">
                     <i class="fa fa-shopping-bag nav-icon"></i>
                     <p>Productos</p>
                   </a>
                 </li>
+                <?php } ?>
+                <?php if ($_SESSION['tipoUsuario'] == "J" || $_SESSION['tipoUsuario'] == "V") { ?>
                 <li class="nav-item">
-                  <a href="dashboard.php?modulo=ventas" class="nav-link <?php echo ($modulo=="ventas" )?" active ":" "; ?>">
+                  <a href="dashboard.php?modulo=ventas" class="nav-link <?php echo ($modulo=="ventas")?" active ":" "; ?>">
                     <i class="fa fa-table nav-icon"></i>
                     <p>Ventas</p>
                   </a>
                 </li>
+                <?php } ?>
               </ul>
         </nav>
         <!-- /.sidebar-menu -->
@@ -156,7 +166,7 @@
     <!-- Content Wrapper. Contains page content -->
     <?php
     }
-      if($modulo=="estadisticas" || $modulo==""){
+      if($modulo=="estadisticas"){
         include_once "estadisticas.php";
       }
       if($modulo=="empleados"){
@@ -171,8 +181,8 @@
       if($modulo=="ventas"){
         include_once "ventas.php";
       }
-      if($modulo=="editEmpleados"){
-        include_once "editEmpleados.php";
+      if($modulo=="editEmpleado"){
+        include_once "editEmpleado.php";
       }
       if($modulo=="editproductos"){
         include_once "editproductos.php";
@@ -183,6 +193,7 @@
   <!-- ./wrapper -->
 
   <!-- jQuery -->
+  <script src="../js/jquery-3.6.0.js"></script>
   <script src="plugins/jquery/jquery.min.js"></script>
   <!-- jQuery UI 1.11.4 -->
   <script src="plugins/jquery-ui/jquery-ui.min.js"></script>

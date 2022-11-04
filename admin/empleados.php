@@ -117,7 +117,7 @@ if (isset($_REQUEST['idBorrar'])) {
                                         <td class="col-4"><?php echo $row['NombreUsuario'] ?></td>
                                         <td class="col-5"><?php echo $row['Email'] ?></td>
                                         <td class="col-3">
-                                            <a href="dashboard.php?modulo=editEmpleados&id=<?php echo $row['ID_Usuario'] ?>" style="margin-right:5px"><i class="fa fa-pen"></i></a>
+                                            <a href="dashboard.php?modulo=editEmpleado&id=<?php echo $row['ID_Usuario'] ?>" style="margin-right:5px"><i class="fa fa-pen"></i></a>
                                             <a href="dashboard.php?modulo=empleados&idBorrar=<?php echo $row['ID_Usuario'] ?>" class="text-danger borrar"><i class="fa fa-user-minus"></i></a>
                                         </td>
                                     </tr>
@@ -160,7 +160,7 @@ if (isset($_REQUEST['idBorrar'])) {
                                         <td class="col-4"><?php echo $row['NombreUsuario'] ?></td>
                                         <td class="col-5"><?php echo $row['Email'] ?></td>
                                         <td class="col-3">
-                                            <a href="dashboard.php?modulo=editEmpleados&id=<?php echo $row['ID_Usuario'] ?>" style="margin-right:5px"><i class="fa fa-pen"></i></a>
+                                            <a href="dashboard.php?modulo=editEmpleado&id=<?php echo $row['ID_Usuario'] ?>" style="margin-right:5px"><i class="fa fa-pen"></i></a>
                                             <a href="dashboard.php?modulo=empleados&idBorrar=<?php echo $row['ID_Usuario'] ?>" class="text-danger borrar"><i class="fa fa-user-minus"></i></a>
                                         </td>
                                     </tr>

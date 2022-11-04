@@ -63,19 +63,19 @@ if (isset($_SESSION['idUsuario'])) {
                     <h3>Datos de envío de compra</h3>
                     <div class="form-group">
                         <label for="nombreRec">Nombre</label>
-                        <input type="text" name="nombreRec" id="nombreRec" class="form-control" value="<?php echo $rowRec['Nombre'] ?>">
+                        <input type="text" name="nombreRec" id="nombreRec" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="emailRec">Email</label>
-                        <input type="email" name="emailRec" id="emailRec" class="form-control" value="<?php echo $rowRec['Email'] ?>">
+                        <input type="email" name="emailRec" id="emailRec" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="direccionRec">Dirección</label>
-                        <input type="text" name="direccionRec" id="direccionRec" class="form-control" value="<?php echo $rowRec['Direccion'] ?>">
+                        <input type="text" name="direccionRec" id="direccionRec" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="telefonoRec">Teléfono</label>
-                        <input type="text" name="telefonoRec" id="telefonoRec" class="form-control" value="<?php echo $rowRec['Telefono'] ?>" >
+                        <input type="text" name="telefonoRec" id="telefonoRec" class="form-control">
                     </div>
                     <div class="form-check">
                         <label class="form-check-label">

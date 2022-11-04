@@ -1,7 +1,7 @@
 <?php
 include_once "conectDB.php";
 $con = mysqli_connect($host, $user, $pass, $db);
-if (isset($_REQUEST['guardar'])) {
+if (isset($_REQUEST['editEmp'])) {
 
     $email = mysqli_real_escape_string($con, $_REQUEST['email'] ?? '');
     $pass = md5(mysqli_real_escape_string($con, $_REQUEST['pass'] ?? ''));
@@ -53,7 +53,7 @@ $row = mysqli_fetch_assoc($res);
                     <!-- /.card-header -->
                     <div class="card-body">
                         <div class="form-signin w-100 m-auto">
-                            <form action="dashboard.php?modulo=editEmpleados" method="post">
+                            <form action="dashboard.php?modulo=editEmpleado" method="post">
 
                                 <div class="row">
                                     <div class="col-md-6">
@@ -83,7 +83,7 @@ $row = mysqli_fetch_assoc($res);
                                 </div>
                                 <br>
                                 <input type="hidden" name="id" value="<?php echo $row['ID_Usuario'] ?>">
-                                <button type="submit" class="w-100 btn btn-lg btn-warning" name="guardar">Guardar</button>
+                                <button type="submit" class="w-100 btn btn-lg btn-warning" name="editEmp">Guardar</button>
                                 
 
                             </form>

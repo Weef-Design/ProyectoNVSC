@@ -74,7 +74,7 @@ $row = mysqli_fetch_assoc($res);
           <!-- /.card-header -->
           <div class="card-body">
             <div class="form-signin w-100 m-auto">
-              <form action="dashboard.php?modulo=crudproductos" method="post" enctype="multipart/form-data">
+              <form action="dashboard.php?modulo=editproductos" method="post" enctype="multipart/form-data">
 
                 <div class="row">
                   <div class="col-md-6">
