@@ -1,31 +1,31 @@
 <?php
 session_start();
-include_once "admin/db_ecommerce.php";
+include_once "../admin/conectDB.php";
 $con = mysqli_connect($host, $user, $pass, $db);
 
-$queryRecibe = "SELECT nombre,email,direccion 
-from recibe 
-where idCli='" . $_SESSION['idCliente'] . "';";
+$queryRecibe = "SELECT Nombre,Email,Direccion,Telefono 
+from datosEnvio 
+where ID_Cliente='" . $_SESSION['idUsuario'] . "';";
 $resRecibe = mysqli_query($con, $queryRecibe);
 $rowRecibe = mysqli_fetch_assoc($resRecibe);
 
-$queryCli = "SELECT nombre,email,direccion 
-from clientes 
-where id='" . $_SESSION['idCliente'] . "';";
+$queryCli = "SELECT NombreUsuario,Email,Direccion,Telefono 
+from Usuario 
+where ID_Usuario='" . $_SESSION['idUsuario'] . "';";
 $resCli = mysqli_query($con, $queryCli);
 $rowCli = mysqli_fetch_assoc($resCli);
 
 $idVenta = mysqli_real_escape_string($con, $_REQUEST['idVenta'] ?? '');
-$queryVenta = "SELECT v.id,v.fecha
-FROM ventas AS v
-WHERE v.id = '$idVenta';";
+$queryVenta = "SELECT V.ID_Venta,V.Fecha
+FROM Venta AS V
+WHERE V.ID_Venta = '$idVenta';";
 $resVenta = mysqli_query($con, $queryVenta);
 $rowVenta = mysqli_fetch_assoc($resVenta);
 ?>
 <?php ob_start(); ?>
 <div>
-    <img src="admin/images/pn.png" style="width: 30px;">
-    My eccomerce
+    <img src="../admin/dist/img/LOGO NATALIA VIERA.png" style="width: 30px;">
+    Natalia Viera
 </div>
 
 <table style="width: 750px;margin-top: 20px;">
@@ -39,18 +39,20 @@ $rowVenta = mysqli_fetch_assoc($resVenta);
     <tbody>
         <tr>
             <td>
-                <strong>Nombre:</strong><?php echo $rowCli['nombre'] ?><br>
-                <strong>Email:</strong><?php echo $rowCli['email'] ?><br>
-                <strong>Direccion:</strong><?php echo $rowCli['direccion'] ?><br>
+                <strong>Nombre:</strong><?php echo $rowCli['NombreUsuario'] ?><br>
+                <strong>Email:</strong><?php echo $rowCli['Email'] ?><br>
+                <strong>Direccion:</strong><?php echo $rowCli['Direccion'] ?><br>
+                <strong>Direccion:</strong><?php echo $rowCli['Telefono'] ?><br>
             </td>
             <td>
-                <strong>Nombre:</strong><?php echo $rowRecibe['nombre'] ?><br>
-                <strong>Email:</strong><?php echo $rowRecibe['email'] ?><br>
-                <strong>Direccion:</strong><?php echo $rowRecibe['direccion'] ?><br>
+                <strong>Nombre:</strong><?php echo $rowRecibe['Nombre'] ?><br>
+                <strong>Email:</strong><?php echo $rowRecibe['Email'] ?><br>
+                <strong>Direccion:</strong><?php echo $rowRecibe['Direccion'] ?><br>
+                <strong>Direccion:</strong><?php echo $rowRecibe['Telefono'] ?><br>
             </td>
             <td>
-                <strong>Nombre:</strong><?php echo $rowVenta['id'] ?><br>
-                <strong>Email:</strong><?php echo $rowVenta['fecha'] ?><br>
+                <strong>Nombre:</strong><?php echo $rowVenta['ID_Venta'] ?><br>
+                <strong>Email:</strong><?php echo $rowVenta['Fecha'] ?><br>
             </td>
         </tr>
     </tbody>
@@ -67,44 +69,46 @@ $rowVenta = mysqli_fetch_assoc($resVenta);
     <tbody>
         <?php
         $queryDetalle = "SELECT
-                    p.nombre,
-                    dv.cantidad,
-                    dv.precio,
-                    dv.subTotal
+                    P.Nombre_Producto,
+                    Dv.Cantidad,
+                    Dv.Precio,
+                    Dv.SubTotal
                     FROM
-                    ventas AS v
-                    INNER JOIN detalleVentas AS dv ON dv.idVenta = v.id
-                    INNER JOIN productos AS p ON p.id = dv.idProd
+                    Venta AS V
+                    INNER JOIN detalleVenta AS Dv ON Dv.ID_Venta = V.ID_Venta
+                    INNER JOIN Producto AS P ON P.ID_Producto = Dv.ID_Producto
                     WHERE
-                    v.id = '$idVenta'";
+                    V.ID_Venta = '$idVenta'";
         $resDetalle = mysqli_query($con, $queryDetalle);
         $total = 0;
         while ($row = mysqli_fetch_assoc($resDetalle)) {
-            $total = $total + $row['subTotal'];
+            $total = $total + $row['Subtotal'];
         ?>
             <tr>
-                <td><?php echo $row['nombre'] ?></td>
-                <td><?php echo $row['cantidad'] ?></td>
-                <td><?php echo "$".money_format("%i",$row['precio']); ?></td>
-                <td><?php echo "$".money_format("%i",$row['subTotal']); ?></td>
+                <td><?php echo $row['Nombre'] ?></td>
+                <td><?php echo $row['Cantidad'] ?></td>
+                <td><?php echo "$" . money_format("%i", $row['Precio']); ?></td>
+                <td><?php echo "$" . money_format("%i", $row['Subtotal']); ?></td>
             </tr>
         <?php
         }
         ?>
         <tr>
-            <td colspan="3" class="text-right"  style="text-align: right;">Total:</td>
-            <td><?php echo "$".money_format("%i",$total); ?></td>
+            <td colspan="3" class="text-right" style="text-align: right;">Total:</td>
+            <td><?php echo "$" . money_format("%i", $total); ?></td>
         </tr>
 
     </tbody>
 </table>
-<?php $html= ob_get_clean(); ?>
+<?php $html = ob_get_clean(); ?>
 <?php
 include_once "dompdf/autoload.inc.php";
+
 use Dompdf\Dompdf;
-$pdf=new Dompdf();
+
+$pdf = new Dompdf();
 $pdf->loadHtml($html);
-$pdf->setPaper("A4","landingscape");
+$pdf->setPaper("A4", "landingscape");
 $pdf->render();
 $pdf->stream();
 ?>

@@ -39,8 +39,8 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <label class="form-label" for="numTarjeta">Número de Tarjeta:</label>
-                                <input class="form-control" id="numTarjeta" name="numTarjeta" maxlength="15" placeholder="xxx xxxx xxxx xxxx">
+                                <label class="form-label" for="numberTarjeta">Número de Tarjeta:</label>
+                                <input type="number" id="numberTarjeta" name="numberTarjeta" class="form-control">
                             </div>
                         </div>
                         <div class="row">

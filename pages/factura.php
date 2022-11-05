@@ -2,12 +2,15 @@
 $total = $_REQUEST['total'] ?? '';
 
 if (isset($_REQUEST['finCompra'])) {
+
+    date_default_timezone_set('America/Argentina/Buenos_Aires');
+
     $idpago = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 16);
-    $fechaActual = 'current_stamp()';
-    $nomTarjeta = $_POST["nombreTarjeta"];
-    $numeroTarjeta = $_POST["numTarjeta"];
-    $vencTarjeta = $_POST["vencTarjeta"];
-    $cvvTarjeta = $_POST["cvvTarjeta"];
+    $fechaActual = date("Y-m-d");
+    $nomTarjeta = $_REQUEST["nombreTarjeta"];
+    $numeroTarjeta = $_REQUEST["numberTarjeta"];
+    $vencTarjeta = $_REQUEST["vencTarjeta"];
+    $cvvTarjeta = $_REQUEST["cvvTarjeta"];
 
     $queryVenta = "INSERT INTO Venta 
         (ID_Cliente,ID_Pago,Fecha,NombreTarjeta,NumeroTarjeta,VencTarjeta,CVV,Estado) values
