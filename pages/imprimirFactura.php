@@ -87,22 +87,22 @@ $rowVenta = mysqli_fetch_assoc($resVenta);
             <tr>
                 <td><?php echo $row['Nombre'] ?></td>
                 <td><?php echo $row['Cantidad'] ?></td>
-                <td><?php echo "$" . money_format("%i", $row['Precio']); ?></td>
-                <td><?php echo "$" . money_format("%i", $row['Subtotal']); ?></td>
+                <td><?php echo "$" . $row['Precio']; ?></td>
+                <td><?php echo "$" . $row['Subtotal']; ?></td>
             </tr>
         <?php
         }
         ?>
         <tr>
             <td colspan="3" class="text-right" style="text-align: right;">Total:</td>
-            <td><?php echo "$" . money_format("%i", $total); ?></td>
+            <td><?php echo "$" . $total; ?></td>
         </tr>
 
     </tbody>
 </table>
 <?php $html = ob_get_clean(); ?>
 <?php
-include_once "dompdf/autoload.inc.php";
+include_once "../dompdf/autoload.inc.php";
 
 use Dompdf\Dompdf;
 

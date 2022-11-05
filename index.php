@@ -11,19 +11,15 @@
     <title>Natalia Viera SC | Inicio</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
     <!-- Font Awesome -->
     <link rel="stylesheet" href="admin/plugins/fontawesome-free/css/all.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="admin/dist/css/adminlte.min.css">
-    <!-- Daterange picker -->
-    <link rel="stylesheet" href="admin/plugins/daterangepicker/daterangepicker.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-    <!-- Paypal -->
-    <script src="https://www.paypal.com/sdk/js?client-id=AUWPpA-OBxPm0KkjXP4a4CjF8F2vrjzhSbP9gURj2pA85jOORrxn1bDtn0uGoDHMG-lNWI0F7EMZOKnj&currency=USD"></script>
+
 
 <?php
     session_start();
@@ -83,15 +79,10 @@ $con = mysqli_connect($host, $user, $pass, $db);
     <script src="./admin/plugins/jquery-ui/jquery-ui.min.js"></script>
     <!-- Bootstrap 4 -->
     <script src="./admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- daterangepicker -->
-    <script src="./admin/plugins/moment/moment.min.js"></script>
-    <script src="./admin/plugins/daterangepicker/daterangepicker.js"></script>
     <!-- AdminLTE App -->
     <script src="./admin/dist/js/adminlte.js"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="./admin/dist/js/pages/dashboard.js"></script>
-    <!-- <script src="https://js.stripe.com/v3/"></script>
-    <script src="./admin/js/stripe.js"></script> -->
     <script src="./js/carrito.js"></script>
     
     

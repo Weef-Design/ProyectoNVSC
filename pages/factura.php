@@ -18,11 +18,8 @@ if (isset($_REQUEST['finCompra'])) {
         ";
     $resVenta = mysqli_query($con, $queryVenta);
     $id = mysqli_insert_id($con);
-    /*
-        if($resVenta){
-            echo "La venta fue exitosa con el id=".$id;
-        }
-        */
+    
+        
     $insertaDetalle = "";
     $cantProd = count($_REQUEST['id']);
     for ($i = 0; $i < $cantProd; $i++) {
@@ -36,6 +33,13 @@ if (isset($_REQUEST['finCompra'])) {
     $resDetalle = mysqli_query($con, $queryDetalle);
     if ($resVenta && $resDetalle) {
 ?>
+        <div class="alert alert-primary alert-dismissible fade show" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                <span class="sr-only">Cerrar</span>
+            </button>
+            Compra realizada con éxito.
+        </div>
         <div class="row">
             <div class="col-6">
                 <?php muestraRecibe($id); ?>
@@ -135,20 +139,23 @@ function muestraDetalle($idVenta)
                 <tr>
                     <td><?php echo $row['Nombre_Producto'] ?></td>
                     <td><?php echo $row['Cantidad'] ?></td>
-                    <td><?php echo $row['Precio'] ?></td>
-                    <td><?php echo $row['SubTotal'] ?></td>
+                    <td>$<?php echo $row['Precio'] ?></td>
+                    <td>$<?php echo $row['SubTotal'] ?></td>
                 </tr>
             <?php
             }
             ?>
             <tr>
                 <td colspan="3" class="text-right">Total:</td>
-                <td><?php echo $total; ?></td>
+                <td>$<?php echo $total; ?></td>
             </tr>
 
         </tbody>
     </table>
-    <a class="btn btn-secondary float-right" target="_blank" href="imprimirFactura.php?idVenta=<?php echo $idVenta; ?>" role="button">Imprimir factura <i class="fas fa-file-pdf"></i> </a>
+    <!--
+    <a class="btn btn-secondary float-right" target="_blank" href="./pages/imprimirFactura.php?idVenta=<?php echo $idVenta; ?>" 
+    role="button">Imprimir factura <i class="fas fa-file-pdf"></i> </a>
+    -->
 <?php
 }
 

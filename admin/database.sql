@@ -48,6 +48,14 @@ Nombre_Paquete varchar(64) not null,
 Precio_Paquete int not null
 );
 
+create table if not exists Paquete_Producto(
+ID_Paquete int,
+ID_Producto int,
+Primary key(ID_Paquete,ID_Producto),
+constraint fk_productoPaquete foreign key (ID_Paquete) references Paquete(ID_Paquete),
+constraint fk_PaqueteProducto foreign key (ID_Producto) references Producto(ID_Producto)
+);
+
 CREATE TABLE Venta(
   ID_Venta int NOT NULL AUTO_INCREMENT,
   ID_Cliente int NOT NULL,
@@ -161,7 +169,14 @@ SELECT ID_Producto,Nombre_Producto,Precio from Producto where Stock>0;
 SELECT ID_Producto, Nombre_Producto, Precio, Ruta_Imagen ,Stock 
 FROM Producto where 1=1 and Nombre_Producto like '%Ca%';
 
+        -- Productos Vendidos --
+SELECT P.Nombre_Producto,U.NombreUsuario,V.Fecha,Dv.Cantidad,Dv.Precio,Dv.SubTotal
+FROM Venta AS V
+INNER JOIN detalleVenta AS Dv ON Dv.ID_Venta = V.ID_Venta
+INNER JOIN Producto AS P ON P.ID_Producto = Dv.ID_Producto
+INNER JOIN Usuario AS U ON U.ID_Usuario = V.ID_Cliente;
 
-
+		-- Cantidad Productos --
+SELECT COUNT(ID_Producto) AS num from Producto where Stock>0;
 
 
