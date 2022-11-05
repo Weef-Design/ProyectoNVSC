@@ -11,81 +11,98 @@
     <title>Natalia Viera SC | Inicio</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="admin/plugins/fontawesome-free/css/all.min.css">
-    <!-- Ionicons -->
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <!-- Theme style -->
     <link rel="stylesheet" href="admin/dist/css/adminlte.min.css">
-    <!-- Google Font: Source Sans Pro -->
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
 
-<?php
+    <?php
     session_start();
-    $accion=$_REQUEST['accion']??'';
-    if($accion=='cerrar'){
+    $accion = $_REQUEST['accion'] ?? '';
+    if ($accion == 'cerrar') {
         session_destroy();
         header("Refresh:0");
     }
-?>
+    ?>
 </head>
 
 <body>
     <!-- jQuery -->
     <script src="admin/plugins/jquery/jquery.min.js"></script>
-<?php
-include_once "admin/conectDB.php";
-$con = mysqli_connect($host, $user, $pass, $db);
-?>
-    <div class="container">
-        <div class="row">
-            <div class="col-12">                
-                <?php
-                include_once "./pages/menu.php";
-                $modulo=$_REQUEST['modulo']??'';
-                
-                if($modulo=="allproductos"){
-                    include_once "./pages/allproductos.php";
-                }
-                if($modulo=="contacto"){
-                    include_once "./pages/contacto.php";
-                }
-                if( $modulo=="detalleproducto" ){
-                    include_once "./pages/detalleproducto.php";
-                }
-                
-                if( $modulo=="carrito" ){
-                    include_once "./pages/carrito.php";
-                }
-                if( $modulo=="envio" ){
-                    include_once "./pages/envio.php";
-                }
-                if( $modulo=="pasarela" ){
-                    include_once "./pages/pasarela.php";
-                }
-                if( $modulo=="factura" ){
-                    include_once "./pages/factura.php";
-                }
-                
-                ?>
-                
+    <?php
+    include_once "admin/conectDB.php";
+    $con = mysqli_connect($host, $user, $pass, $db);
+    ?>
+
+    <?php
+    include_once "./pages/menu.php";
+    ?>
+
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="./admin/dist/img/CAROUSEL UNIFORMES.png" class="d-block w-100" alt="Uniformes">
+            </div>
+            <div class="carousel-item">
+                <img src="./admin/dist/img/CAROUSEL CALZADO.png" class="d-block w-100" alt="Calzado">
+            </div>
+            <div class="carousel-item">
+                <img src="./admin/dist/img/CAROUSEL SEGURIDAD.png" class="d-block w-100" alt="Seguridad">
             </div>
         </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
     </div>
+
+    <?php
+    $modulo = $_REQUEST['modulo'] ?? '';
+
+    if ($modulo == "allproductos") {
+        include_once "./pages/allproductos.php";
+    }
+    if ($modulo == "contacto") {
+        include_once "./pages/contacto.php";
+    }
+    if ($modulo == "detalleproducto") {
+        include_once "./pages/detalleproducto.php";
+    }
+
+    if ($modulo == "carrito") {
+        include_once "./pages/carrito.php";
+    }
+    if ($modulo == "envio") {
+        include_once "./pages/envio.php";
+    }
+    if ($modulo == "pasarela") {
+        include_once "./pages/pasarela.php";
+    }
+    if ($modulo == "factura") {
+        include_once "./pages/factura.php";
+    }
+
+    ?>
+
+
 
     <!-- jQuery UI 1.11.4 -->
     <script src="./js/jquery-3.6.0.js"></script>
     <script src="./admin/plugins/jquery-ui/jquery-ui.min.js"></script>
-    <!-- Bootstrap 4 -->
-    <script src="./admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="./admin/dist/js/adminlte.js"></script>
-    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="./admin/dist/js/pages/dashboard.js"></script>
     <script src="./js/carrito.js"></script>
-    
-    
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 </body>
 
 </html>
