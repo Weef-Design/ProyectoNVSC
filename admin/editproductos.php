@@ -8,6 +8,7 @@ if (isset($_REQUEST['editProducto'])) {
   $productStock = mysqli_real_escape_string($con, $_REQUEST['productStock'] ?? '');
   $productTalle = mysqli_real_escape_string($con, $_REQUEST['productTalle'] ?? '');
   $productDesc = mysqli_real_escape_string($con, $_REQUEST['productDesc'] ?? '');
+  $productDescripcion = mysqli_real_escape_string($con, $_REQUEST['productDescripcion'] ?? '');
 
   $archivo = $_FILES['productImage']['name'];
   if (isset($archivo) && $archivo != "") {
@@ -33,7 +34,7 @@ if (isset($_REQUEST['editProducto'])) {
   $id = mysqli_real_escape_string($con, $_REQUEST['id'] ?? '');
 
   $sql = "UPDATE Producto SET
-        Nombre_Producto='" . $productNombre . "',Precio='" . $productPrecio . "',Stock='" . $productStock . "', Talle='" . $productTalle . "',Descuento='" . $productDesc . "',Ruta_Imagen='" . $archivo . "',ID_Proveedor='" . $productProv . "',ID_Categoria='" . $productCat . "'
+        Nombre_Producto='" . $productNombre . "',Descripcion='" . $productDescripcion . "',Precio='" . $productPrecio . "',Stock='" . $productStock . "', Talle='" . $productTalle . "',Descuento='" . $productDesc . "',Ruta_Imagen='" . $archivo . "',ID_Proveedor='" . $productProv . "',ID_Categoria='" . $productCat . "'
         where ID_Producto='" . $id . "';";
 
   $result = mysqli_query($con, $sql);
@@ -124,9 +125,15 @@ $row = mysqli_fetch_assoc($res);
                     <input type="number" class="form-control" name="productDesc" id="productDesc" value="<?php echo $row['Descuento'] ?>">
                   </div>
                   <div class="col-md-6">
+                    <label for="productDescripcion" class="form-label">Descripción:</label>
+                    <textarea class="form-control" name="productDescripcion" id="productDescripcion" aria-valuetext="<?php echo $row['Descripcion'] ?>" cols="30" rows="4"></textarea>
+                  </div>
+                  </div>
+                  <div class="row">
+                  <div class="col-md-6">
                     <div id="Talle"></div>
                   </div>
-                </div>
+                  </div>
                 <br>
                 <input type="hidden" name="id" value="<?php echo $row['ID_Producto'] ?>">
                 <button type="submit" class="w-100 btn btn-lg btn-warning" name="editProducto">Modificar</button>

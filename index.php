@@ -11,6 +11,7 @@
     <title>Natalia Viera SC | Inicio</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    
     <!-- Font Awesome -->
     <link rel="stylesheet" href="admin/plugins/fontawesome-free/css/all.min.css">
     <!-- Ionicons -->
@@ -21,7 +22,8 @@
     <link rel="stylesheet" href="admin/plugins/daterangepicker/daterangepicker.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-    <link rel="stylesheet" href="admin/css/stripe.css">
+    <!-- Paypal -->
+    <script src="https://www.paypal.com/sdk/js?client-id=AUWPpA-OBxPm0KkjXP4a4CjF8F2vrjzhSbP9gURj2pA85jOORrxn1bDtn0uGoDHMG-lNWI0F7EMZOKnj&currency=USD"></script>
 
 <?php
     session_start();
@@ -91,6 +93,7 @@ $con = mysqli_connect($host, $user, $pass, $db);
     <!-- <script src="https://js.stripe.com/v3/"></script>
     <script src="./admin/js/stripe.js"></script> -->
     <script src="./js/carrito.js"></script>
+    
     
 </body>
 

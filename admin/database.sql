@@ -30,6 +30,7 @@ Nombre_Categoria varchar (64) not null
 create table if not exists Producto(
 ID_Producto int auto_increment primary key,
 Nombre_Producto varchar(128) not null,
+Descripcion varchar(256),
 Precio decimal not null,
 Stock int not null,
 Talle varchar(3),
@@ -40,6 +41,8 @@ ID_Categoria int not null,
 constraint fk_productoProveedor foreign key (ID_Proveedor) references Proveedor(ID_Proveedor),
 constraint fk_productoCategoria foreign key (ID_Categoria) references Categoria(ID_Categoria)
 );
+alter table Producto 
+MODIFY COLUMN Descripcion varchar(1024);
 
 create table if not exists Paquete(
 ID_Paquete int auto_increment primary key,
@@ -52,6 +55,11 @@ CREATE TABLE Venta(
   ID_Cliente int NOT NULL,
   ID_Pago varchar(255) not null,
   Fecha datetime NOT NULL,
+  NombreTarjeta varchar(64) not null,
+  NumeroTarjeta int(32) not null,
+  VencTarjeta varchar(7) not null,
+  CVV int(3) not null,
+  Estado varchar(32) not null,
   PRIMARY KEY (ID_Venta),
   CONSTRAINT fk_ventaUsuario FOREIGN KEY (ID_Cliente) REFERENCES Usuario(ID_Usuario)
 );
@@ -74,16 +82,12 @@ CREATE TABLE datosEnvio (
   Email varchar(128) NOT NULL,
   Direccion varchar(64) NOT NULL,
   Telefono varchar(16) NOT NULL,
+  Nombre varchar(64),
   PRIMARY KEY (ID_datosEnvio),
   CONSTRAINT fk_EnvioCliente FOREIGN KEY (ID_Cliente) REFERENCES Usuario (ID_Usuario)
 );
-ALTER TABLE datosEnvio 
-ADD Nombre varchar(64);
-
 
 /* SENTENCIAS DML */
-
--- Ingresar Usuario/Cliente  --
 
 -- Ingresar Jefe  --
 INSERT INTO Usuario(Email, Contrasenia, NombreUsuario, Estado, FechaRegistro, Tipo, Direccion, Telefono)
@@ -93,9 +97,7 @@ INSERT INTO Usuario(Email, Contrasenia, NombreUsuario, Estado, FechaRegistro, Ti
 -- Ingresar Usuario Normal --
 INSERT INTO Usuario(Email, Contrasenia, NombreUsuario, Estado, FechaRegistro, Tipo)
         VALUE ('tricogus@gmail.com','78eaa014a3e8f0fa5f7d332249f6795a','Gustavo Velazquez',1,'2022-10-31', 'U');
-INSERT INTO TelefonoUsuario(Telefono)
-        VALUE ('094935236');
-        
+
 -- Ingreso Proveedores --
 INSERT INTO Proveedor(Nombre_Proveedor, Direccion, TelefonoProv)
         VALUES ('Montevideo Uniformes','Ferrer Serra 2172','095292764'),
@@ -111,7 +113,21 @@ INSERT INTO Categoria(Nombre_Categoria)
                ('Seguridad'),
                ('Accesorios'),
                ('Otros');
-               
+create table if not exists Producto(
+ID_Producto int auto_increment primary key,
+Nombre_Producto varchar(128) not null,
+Descripcion varchar(256),
+Precio decimal not null,
+Stock int not null,
+Talle varchar(3),
+Descuento decimal not null,
+Ruta_Imagen varchar(128) not null,
+ID_Proveedor int not null,
+ID_Categoria int not null,
+constraint fk_productoProveedor foreign key (ID_Proveedor) references Proveedor(ID_Proveedor),
+constraint fk_productoCategoria foreign key (ID_Categoria) references Categoria(ID_Categoria)
+);
+
 -- Select Producto + NombreCategoria + NombreProveedor --
 select * from Producto P 
 join Categoria C on C.ID_Categoria=P.ID_Categoria

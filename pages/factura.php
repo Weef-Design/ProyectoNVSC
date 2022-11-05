@@ -1,39 +1,38 @@
 <?php
-    $total=$_REQUEST['total']??'';
-    include_once "stripe/init.php";
-    \Stripe\Stripe::setApiKey("sk_test_JaTXHOFLk3lllnj1PnpahfxR00NLGmUe8M");
-    $toke=$_POST['stripeToken'];
-    $charge=\Stripe\Charge::create([
-        'amount'=>$total,
-        'currency'=>'usd',
-        'description'=>'Pago de ecommerce',
-        'source'=>$toke
-    ]);
-    if($charge['captured']){
-        $queryVenta="INSERT INTO ventas 
-        (idCli                       ,idPago             ,fecha) values
-        ('".$_SESSION['idCliente']."','".$charge['id']."',now());
+$total = $_REQUEST['total'] ?? '';
+
+if (isset($_REQUEST['finCompra'])) {
+    $idpago = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 16);
+    $fechaActual = 'current_stamp()';
+    $nomTarjeta = $_POST["nombreTarjeta"];
+    $numeroTarjeta = $_POST["numTarjeta"];
+    $vencTarjeta = $_POST["vencTarjeta"];
+    $cvvTarjeta = $_POST["cvvTarjeta"];
+
+    $queryVenta = "INSERT INTO Venta 
+        (ID_Cliente,ID_Pago,Fecha,NombreTarjeta,NumeroTarjeta,VencTarjeta,CVV,Estado) values
+        ('".$_SESSION['idUsuario']."','$idpago','$fechaActual','$nomTarjeta','$numeroTarjeta','$vencTarjeta','$cvvTarjeta','Pago Realizado');
         ";
-        $resVenta=mysqli_query($con,$queryVenta);
-        $id=mysqli_insert_id($con);
-        /*
+    $resVenta = mysqli_query($con, $queryVenta);
+    $id = mysqli_insert_id($con);
+    /*
         if($resVenta){
             echo "La venta fue exitosa con el id=".$id;
         }
         */
-        $insertaDetalle="";
-        $cantProd=count($_REQUEST['id']);
-        for($i=0;$i<$cantProd;$i++){
-            $subTotal=$_REQUEST['precio'][$i]*$_REQUEST['cantidad'][$i];
-            $insertaDetalle=$insertaDetalle."('".$_REQUEST['id'][$i]."','$id','".$_REQUEST['cantidad'][$i]."','".$_REQUEST['precio'][$i]."','$subTotal'),";
-        }
-        $insertaDetalle=rtrim($insertaDetalle,",");
-        $queryDetalle="INSERT INTO detalleVentas 
-        (idProd, idVenta, cantidad, precio, subTotal) values 
+    $insertaDetalle = "";
+    $cantProd = count($_REQUEST['id']);
+    for ($i = 0; $i < $cantProd; $i++) {
+        $subTotal = $_REQUEST['precio'][$i] * $_REQUEST['cantidad'][$i];
+        $insertaDetalle = $insertaDetalle . "('" . $_REQUEST['id'][$i] . "','$id','" . $_REQUEST['cantidad'][$i] . "','" . $_REQUEST['precio'][$i] . "','$subTotal'),";
+    }
+    $insertaDetalle = rtrim($insertaDetalle, ",");
+    $queryDetalle = "INSERT INTO detalleVenta 
+        (ID_Producto, ID_Venta, Cantidad, Precio, Subtotal) values 
         $insertaDetalle;";
-        $resDetalle=mysqli_query($con,$queryDetalle);
-        if($resVenta && $resDetalle){
-        ?>
+    $resDetalle = mysqli_query($con, $queryDetalle);
+    if ($resVenta && $resDetalle) {
+?>
         <div class="row">
             <div class="col-6">
                 <?php muestraRecibe($id); ?>
@@ -42,107 +41,112 @@
                 <?php muestraDetalle($id); ?>
             </div>
         </div>
-        <?php
+    <?php
         borrarCarrito();
-        }
     }
-    function borrarCarrito(){
-        ?>
-            <script>
-                $.ajax({
-                    type: "post",
-                    url: "ajax/borrarCarrito.php",
-                    dataType: "json",
-                    success: function (response) {
-                        $("#badgeProducto").text("");
-                        $("#listaCarrito").text("");
-                    }
-                });
-            </script>
-        <?php
-    }
-    function muestraRecibe($idVenta){
+}
+function borrarCarrito()
+{
     ?>
+    <script>
+        $.ajax({
+            type: "post",
+            url: "ajax/borrarCarrito.php",
+            dataType: "json",
+            success: function(response) {
+                $("#badgeProducto").text("");
+                $("#listaCarrito").text("");
+            }
+        });
+    </script>
+<?php
+}
+function muestraRecibe($idVenta)
+{
+?>
     <table class="table">
         <thead>
             <tr>
-                <th colspan="3" class="text-center">Persona que recibe</th>
+                <th colspan="3" class="text-center">Recibe el Producto:</th>
             </tr>
             <tr>
                 <th>Nombre</th>
                 <th>Email</th>
-                <th>Direccion</th>
+                <th>Dirección</th>
+                <th>Teléfono</th>
             </tr>
         </thead>
         <tbody>
             <?php
-                global $con;
-                $queryRecibe="SELECT nombre,email,direccion 
-                from recibe 
-                where idCli='".$_SESSION['idCliente']."';";
-                $resRecibe=mysqli_query($con,$queryRecibe);
-                $row=mysqli_fetch_assoc($resRecibe);
+            global $con;
+            $queryRecibe = "SELECT Nombre,Email,Direccion,Telefono 
+                from datosEnvio 
+                where ID_Cliente='" . $_SESSION['idUsuario'] . "';";
+            $resRecibe = mysqli_query($con, $queryRecibe);
+            $row = mysqli_fetch_assoc($resRecibe);
             ?>
             <tr>
-                <td><?php echo $row['nombre'] ?></td>
-                <td><?php echo $row['email'] ?></td>
-                <td><?php echo $row['direccion'] ?></td>
+                <td><?php echo $row['Nombre'] ?></td>
+                <td><?php echo $row['Email'] ?></td>
+                <td><?php echo $row['Direccion'] ?></td>
+                <td><?php echo $row['Telefono'] ?></td>
             </tr>
         </tbody>
     </table>
-    <?php
-    }
-    function muestraDetalle($idVenta){
-        ?>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th colspan="3" class="text-center">Detalle de venta</th>
-                </tr>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Cantidad</th>
-                    <th>Precio</th>
-                    <th>SubTotal</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                    global $con;
-                    $queryDetalle="SELECT
-                    p.nombre,
-                    dv.cantidad,
-                    dv.precio,
-                    dv.subTotal
+<?php
+}
+function muestraDetalle($idVenta)
+{
+?>
+    <table class="table">
+        <thead>
+            <tr>
+                <th colspan="3" class="text-center">Detalle de venta</th>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <th>Cantidad</th>
+                <th>Precio</th>
+                <th>SubTotal</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            global $con;
+            $queryDetalle = "SELECT
+                    P.Nombre_Producto,
+                    Dv.Cantidad,
+                    Dv.Precio,
+                    Dv.SubTotal
                     FROM
-                    ventas AS v
-                    INNER JOIN detalleVentas AS dv ON dv.idVenta = v.id
-                    INNER JOIN productos AS p ON p.id = dv.idProd
+                    Venta AS V
+                    INNER JOIN detalleVenta AS Dv ON Dv.ID_Venta = V.ID_Venta
+                    INNER JOIN Producto AS P ON P.ID_Producto = Dv.ID_Producto
                     WHERE
-                    v.id = '$idVenta'";
-                    $resDetalle=mysqli_query($con,$queryDetalle);
-                    $total=0;
-                    while($row=mysqli_fetch_assoc($resDetalle)){
-                        $total=$total+$row['subTotal'];
-                ?>
+                    V.ID_Venta = '$idVenta'";
+            $resDetalle = mysqli_query($con, $queryDetalle);
+            $total = 0;
+            while ($row = mysqli_fetch_assoc($resDetalle)) {
+                $total = $total + $row['SubTotal'];
+            ?>
                 <tr>
-                    <td><?php echo $row['nombre'] ?></td>
-                    <td><?php echo $row['cantidad'] ?></td>
-                    <td><?php echo $row['precio'] ?></td>
-                    <td><?php echo $row['subTotal'] ?></td>
+                    <td><?php echo $row['Nombre_Producto'] ?></td>
+                    <td><?php echo $row['Cantidad'] ?></td>
+                    <td><?php echo $row['Precio'] ?></td>
+                    <td><?php echo $row['SubTotal'] ?></td>
                 </tr>
-                <?php
-                    }
-                ?>
-                <tr>
-                    <td colspan="3" class="text-right">Total:</td>
-                    <td><?php echo $total; ?></td>
-                </tr>
+            <?php
+            }
+            ?>
+            <tr>
+                <td colspan="3" class="text-right">Total:</td>
+                <td><?php echo $total; ?></td>
+            </tr>
 
-            </tbody>
-        </table>
-        <a class="btn btn-secondary float-right" target="_blank" href="imprimirFactura.php?idVenta=<?php echo $idVenta; ?>" role="button">Imprimir factura <i class="fas fa-file-pdf"></i> </a>
-        <?php
-        }
-    
+        </tbody>
+    </table>
+    <a class="btn btn-secondary float-right" target="_blank" href="imprimirFactura.php?idVenta=<?php echo $idVenta; ?>" role="button">Imprimir factura <i class="fas fa-file-pdf"></i> </a>
+<?php
+}
+
 ?>

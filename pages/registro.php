@@ -16,7 +16,7 @@ if (isset($_REQUEST['guardar'])) {
     } else {
         $query = "INSERT INTO Usuario(Email, Contrasenia, NombreUsuario, Estado, FechaRegistro, Tipo) 
                         VALUE ('$email','$pass','$nombre',0,'$fechaActual','U');";
-    
+
         $res = mysqli_query($con, $query);
         if ($res) {
             echo '<meta http-equiv="refresh" content="0; url=../index.php?mensaje=Usuario ' . $nombre . ' creado exitosamente" />  ';
@@ -55,52 +55,57 @@ if (isset($_REQUEST['guardar'])) {
     <link rel="stylesheet" href="css/stripe.css">
 </head>
 
-<body>
-
-    <!-- Main content -->
-    <section class="content">
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <!-- /.card-header -->
-                    <div class="card-body">
-                        <div class="form-signin w-100 m-auto">
-                            <form action="registro.php" method="post">
-                                <h2>Registro</h2>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label for="nombre" class="form-label">Nombre</label>
-                                        <input type="text" class="form-control" name="nombre" id="nombre" required="required">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="email" class="form-label">Email</label>
-                                        <input type="email" class="form-control" name="email" id="email" required="required">
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label for="pass" class="form-label">Contraseña</label>
-                                        <input type="password" class="form-control" name="pass" id="pass" required="required">
-                                    </div>
-                                </div>
-                                <br>
-                                <button type="submit" class="w-100 btn btn-lg btn-warning" name="guardar">Guardar</button>
-
-                            </form>
-                        </div>
-
-                    </div>
-                    <!-- /.card-body -->
-                </div>
-                <!-- /.card -->
-
-            </div>
-            <!-- /.col -->
+<body class="hold-transition register-page">
+    <div class="register-box">
+        <div class="register-logo">
+            <a href="../index.php"><b>Natalia</b>Viera</a>
         </div>
-        <!-- /.row -->
-    </section>
-    <!-- /.content -->
+
+        <div class="card">
+            <div class="card-body register-card-body">
+                <p class="login-box-msg">Complete sus datos</p>
+
+                <form action="registro.php" method="post">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre Completo">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-user"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control" name="email" id="email" placeholder="Email">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="password" class="form-control" name="pass" id="pass" placeholder="Contraseña">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!-- /.col -->
+                        <div class="col-4">
+                            <button type="submit" class="btn btn-primary" name="guardar">Registrarse</button>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                </form>
+
+                <a href="login.html" class="text-center float-right">Ya tengo una cuenta</a>
+            </div>
+            <!-- /.form-box -->
+        </div><!-- /.card -->
     </div>
+    <!-- /.content -->
+
 
     <!-- jQuery UI 1.11.4 -->
     <script src="../admin/plugins/jquery-ui/jquery-ui.min.js"></script>

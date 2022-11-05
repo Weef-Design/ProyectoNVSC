@@ -23,7 +23,7 @@
 <body class="hold-transition login-page">
   <div class="login-box">
     <div class="login-logo">
-      <b>Natalia</b> Viera
+      <a href="../index.php"><b>Natalia</b>Viera</a>
     </div>
     <!-- /.login-logo -->
     <div class="card">
@@ -90,7 +90,7 @@
             <!-- /.col -->
             <div class="col-12">
               <button type="submit" class="btn btn-primary" name="login">Continuar</button>
-              <a href="../admin/registro.php" class="text-success float-right" >Registrarse</a>
+              <a href="./registro.php" class="text-success float-right" >Registrarse</a>
             </div>
             <!-- /.col -->
           </div>

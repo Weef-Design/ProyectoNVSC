@@ -9,6 +9,7 @@ if (isset($_REQUEST['agregarProducto'])) {
   $productStock = $_POST["productStock"];
   $productTalle = $_POST["productTalle"] ?? '';
   $productDesc = $_POST["productDesc"] ?? '';
+  $productDescripcion = $_POST["productDescripcion"] ?? '';
 
   $archivo = $_FILES['productImage']['name'];
   if (isset($archivo) && $archivo != "") {
@@ -32,8 +33,8 @@ if (isset($_REQUEST['agregarProducto'])) {
   $productProv = $_POST["productProv"];
   $productCat = $_POST["productCat"];
 
-  $query = "INSERT INTO Producto(Nombre_Producto, Precio, Stock, Talle, Descuento, Ruta_Imagen, ID_Proveedor, ID_Categoria) 
-        VALUE ('$productNombre','$productPrecio','$productStock','$productTalle', '$productDesc','$archivo','$productProv','$productCat');";
+  $query = "INSERT INTO Producto(Nombre_Producto, Descripcion, Precio, Stock, Talle, Descuento, Ruta_Imagen, ID_Proveedor, ID_Categoria) 
+        VALUE ('$productNombre','$productDescripcion','$productPrecio','$productStock','$productTalle', '$productDesc','$archivo','$productProv','$productCat');";
 
   $res = mysqli_query($con, $query);
 

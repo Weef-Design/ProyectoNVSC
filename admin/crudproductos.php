@@ -87,6 +87,10 @@ if (isset($_REQUEST['idBorrar'])) {
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-6">
+                                                        <label for="productDescripcion" class="form-label">Descripción:</label>
+                                                        <textarea class="form-control" name="productDescripcion" id="productDescripcion" cols="30" rows="4"></textarea>
+                                                    </div>
+                                                    <div class="col-md-6">
                                                         <div id="Talle"></div>
                                                     </div>
                                                 </div>
@@ -127,7 +131,7 @@ if (isset($_REQUEST['idBorrar'])) {
                                 $query = "select * from Producto P 
                                 join Categoria C on C.ID_Categoria=P.ID_Categoria
                                 join Proveedor Pr on Pr.ID_Proveedor=P.ID_Proveedor
-                                ;";
+                                group by Nombre_Producto;";
                                 $res = mysqli_query($con, $query);
 
                                 while ($row = mysqli_fetch_array($res)) {

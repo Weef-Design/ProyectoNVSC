@@ -82,7 +82,7 @@ if (isset($_REQUEST['idEstadoII'])) {
                                             <a href="dashboard.php?modulo=clientes&idEstado=<?php echo $row['ID_Usuario'] ?>" style="margin-right:5px"><i class="fa fa-check text-success"></i></a>
                                         </td>
                                         <td class="col-1">
-                                            <a href="dashboard.php?modulo=clientes&idEstadoII=<?php echo $row['ID_Usuario'] ?>" class="text-danger borrar"><i class="fa-solid fa-xmark"></i></a>
+                                            <a href="dashboard.php?modulo=clientes&idEstadoII=<?php echo $row['ID_Usuario'] ?>" class="text-danger offUsuario"><i class="fa fa-minus text-danger"></i></a>
                                         </td>
                                     </tr>
 

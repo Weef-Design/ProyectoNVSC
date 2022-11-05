@@ -226,12 +226,23 @@
   <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
   <script src="dist/js/pages/dashboard.js"></script>
   <script src="../js/validaciones.js"></script>
-  <script src="https://kit.fontawesome.com/61458513d7.js" crossorigin="anonymous"></script>
   <script>
   $(document).ready(function () {
     $(".borrar").click(function (e) { 
       e.preventDefault();
       var res=confirm("¿Está seguro que quieres eliminar este usuario?");
+      if(res==true){
+        var link=$(this).attr("href");
+        window.location=link;
+      }
+      
+    });
+  });
+
+  $(document).ready(function () {
+    $(".offUsuario").click(function (e) { 
+      e.preventDefault();
+      var res=confirm("¿Está seguro que quieres desactivar este usuario?");
       if(res==true){
         var link=$(this).attr("href");
         window.location=link;
