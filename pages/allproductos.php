@@ -1,9 +1,9 @@
 <div class="row mt-1">
     <?php
-    
+
     $nombre = mysqli_real_escape_string($con, $_REQUEST['nombre'] ?? '');
     $where = " where 1=1 and Nombre_Producto like '%" . $nombre . "%'";
-    
+
     $queryCuenta = "SELECT COUNT(*) as cuenta FROM Producto  $where ;";
     $resCuenta = mysqli_query($con, $queryCuenta);
     $rowCuenta = mysqli_fetch_assoc($resCuenta);
@@ -38,25 +38,26 @@
     while ($row = mysqli_fetch_assoc($res)) {
     ?>
         <div class="col-lg-3 col-md-6 col-sm-12">
-            <div class="card border-primary">
+            <div class="card border-primary" style="width: 240px; height: 300px">
                 <a href="index.php?modulo=detalleproducto&id=<?php echo $row['ID_Producto'] ?>">
-                <img class="card-img-top img-thumbnail" src="./admin/dist/img/products/<?php echo $row['Ruta_Imagen'] ?>" alt="">
-                <div class="card-body">
-                    <h2 class="card-title"><strong><?php echo $row['Nombre_Producto'] ?></strong></h2>
-                    <p class="card-text">$<?php echo $row['Precio'] ?></p>
-                </a>    
-                </div>
+                    <img class="card-img-top img-thumbnail" style="height: 210px" src="./admin/dist/img/products/<?php echo $row['Ruta_Imagen'] ?>" alt="">
+                    <div class="card-body">
+                        <h2 class="card-title"><strong><?php echo $row['Nombre_Producto'] ?></strong></h2>
+                        <p class="card-text">$<?php echo $row['Precio'] ?></p>
+                    
+                </a>
             </div>
         </div>
-    <?php
+</div>
+<?php
     }
-    ?>
+?>
 </div>
 <?php
 if ($totalPaginas > 0) {
 ?>
     <nav aria-label="Page navigation">
-        <ul class="pagination">
+        <ul class="pagination text-center d-flex align-items-center justify-content-center">
             <?php
             if ($paginaSel != 1) {
             ?>
