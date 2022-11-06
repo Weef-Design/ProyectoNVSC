@@ -29,9 +29,10 @@
     </button>
 </div>
 
-<div class="row">
-    <?php
+<h3 class="titulo">RECOMENDADO PARA TI</h3>
 
+<div class="sliderRecom">
+    <?php
     $query = "SELECT
                         ID_Producto,
                         Nombre_Producto,
@@ -48,9 +49,45 @@
 
     ?>
         <div class="col-lg-3 col-md-6 col-sm-12">
-            <div class="card border-primary" style="width: 240px; height: 300px">
+            <div class="card border-primary" style="width: 280px; height: 340px">
                 <a href="index.php?modulo=detalleproducto&id=<?php echo $row['ID_Producto'] ?>">
-                    <img class="card-img-top img-thumbnail" style="height: 210px" src="./admin/dist/img/products/<?php echo $row['Ruta_Imagen'] ?>" alt="">
+                    <img class="card-img-top img-thumbnail" style="height: 250px" src="./admin/dist/img/products/<?php echo $row['Ruta_Imagen'] ?>" alt="">
+                    <div class="card-body">
+                        <h2 class="card-title"><strong><?php echo $row['Nombre_Producto'] ?></strong></h2>
+                        <p class="card-text">$<?php echo $row['Precio'] ?></p>
+                </a>
+            </div>
+        </div>
+</div>
+<?php
+    }
+?>
+</div>
+
+
+<h3 class="titulo">OFERTAS IMPERDIBLES</h3>
+
+<div class="sliderOfertas">
+    <?php
+    $query = "SELECT
+                        ID_Producto,
+                        Nombre_Producto,
+                        Precio,
+                        Ruta_Imagen,
+                        Stock
+                        FROM
+                        Producto
+                        GROUP BY Precio
+                        limit 10
+                        ";
+    $res = mysqli_query($con, $query);
+    while ($row = mysqli_fetch_assoc($res)) {
+
+    ?>
+        <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="card border-primary" style="width: 280px; height: 340px">
+                <a href="index.php?modulo=detalleproducto&id=<?php echo $row['ID_Producto'] ?>">
+                    <img class="card-img-top img-thumbnail" style="height: 250px" src="./admin/dist/img/products/<?php echo $row['Ruta_Imagen'] ?>" alt="">
                     <div class="card-body">
                         <h2 class="card-title"><strong><?php echo $row['Nombre_Producto'] ?></strong></h2>
                         <p class="card-text">$<?php echo $row['Precio'] ?></p>

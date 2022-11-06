@@ -1,0 +1,24 @@
+.titulo{
+
+    text-align: center;
+    margin: 60px 50px 30px 50px;
+
+}
+
+.sliderRecom{
+
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    margin: 0 50px 60px 50px;
+
+}
+
+.sliderOfertas{
+
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    margin: 0 50px 60px 50px;
+
+}

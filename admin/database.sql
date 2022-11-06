@@ -179,14 +179,11 @@ INNER JOIN Usuario AS U ON U.ID_Usuario = V.ID_Cliente;
 		-- Cantidad Productos --
 SELECT COUNT(ID_Producto) AS num from Producto where Stock>0;
 
-SELECT 
-                        ID_Producto,
-                        Nombre_Producto,
-                        Precio,
-                        Ruta_Imagen,
-                        Stock
-                        FROM
-                        Producto
-                        GROUP BY Precio;
+ -- Mostrar los 10 productos mas baratos -- 
+SELECT ID_Producto,Nombre_Producto,Precio,Ruta_Imagen,Stock
+FROM Producto GROUP BY Precio limit 10;
+
+-- Cantidad Productos --
+SELECT COUNT(ID_Usuario) AS cantidadUsuarios from Usuario;
 
 
