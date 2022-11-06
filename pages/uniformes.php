@@ -6,11 +6,12 @@
 <li><a href="index.php?modulo=otros&idCategoria=4"><img class="mr-1" src="./admin/dist/img/more-information.png" alt="Uniformes" style="width: 22px">Otros</a></li>
 </ul>
 <div class="allProducts row mt-1">
-
 <?php
+    if (isset($_REQUEST['idCategoria'])) {
 
+    $idCat = mysqli_real_escape_string($con, $_REQUEST['idCategoria'] ?? '');
     $nombre = mysqli_real_escape_string($con, $_REQUEST['nombre'] ?? '');
-    $where = " where 1=1 and Nombre_Producto like '%" . $nombre . "%'";
+    $where = " where 1=1 and Nombre_Producto like '%" . $nombre . "%' and ID_Categoria=$idCat";
 
     $queryCuenta = "SELECT COUNT(*) as cuenta FROM Producto  $where ;";
     $resCuenta = mysqli_query($con, $queryCuenta);
@@ -53,12 +54,14 @@
                         <h2 class="card-title"><strong><?php echo $row['Nombre_Producto'] ?></strong></h2></a>
                         <p class="card-text">$<?php echo $row['Precio'] ?></p>
                     
+                
             </div>
         </div>
 </div>
 <?php
     }
 ?>
+</div>
 </div>
 <?php
 if ($totalPaginas > 0) {
@@ -69,7 +72,7 @@ if ($totalPaginas > 0) {
             if ($paginaSel != 1) {
             ?>
                 <li class="page-item">
-                    <a class="page-link" href="index.php?modulo=allproductos&pagina=<?php echo ($paginaSel - 1); ?>" aria-label="Previous">
+                    <a class="page-link" href="index.php?modulo=uniformes&idCategoria=1&pagina=<?php echo ($paginaSel - 1); ?>" aria-label="Previous">
                         <span aria-hidden="true">&laquo;</span>
                         <span class="sr-only">Anterior</span>
                     </a>
@@ -82,7 +85,7 @@ if ($totalPaginas > 0) {
             for ($i = 1; $i <= $totalPaginas; $i++) {
             ?>
                 <li class="page-item <?php echo ($paginaSel == $i) ? " active " : " "; ?>">
-                    <a class="page-link" href="index.php?modulo=allproductos&pagina=<?php echo $i; ?>"><?php echo $i; ?></a>
+                    <a class="page-link" href="index.php?modulo=uniformes&idCategoria=1&pagina=<?php echo $i; ?>"><?php echo $i; ?></a>
                 </li>
             <?php
             }
@@ -91,7 +94,7 @@ if ($totalPaginas > 0) {
             if ($paginaSel != $totalPaginas) {
             ?>
                 <li class="page-item">
-                    <a class="page-link" href="index.php?modulo=allproductos&pagina=<?php echo ($paginaSel + 1); ?>" aria-label="Next">
+                    <a class="page-link" href="index.php?modulo=uniformes&idCategoria=1&pagina=<?php echo ($paginaSel + 1); ?>" aria-label="Next">
                         <span aria-hidden="true">&raquo;</span>
                         <span class="sr-only">Siguiente</span>
                     </a>
@@ -103,4 +106,7 @@ if ($totalPaginas > 0) {
     </nav>
 <?php
 }
+?>
+<?php
+    }
 ?>

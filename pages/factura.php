@@ -69,7 +69,8 @@ function borrarCarrito()
 function muestraRecibe($idVenta)
 {
 ?>
-    <table class="table">
+    <div class="mx-5">
+    <table class="table mx-5">
         <thead>
             <tr>
                 <th colspan="3" class="text-center">Recibe el Producto:</th>
@@ -98,11 +99,14 @@ function muestraRecibe($idVenta)
             </tr>
         </tbody>
     </table>
+    <h1 class="text-center mt-5">GRACIAS POR SU COMPRA</h1>
+    </div>
 <?php
 }
 function muestraDetalle($idVenta)
 {
 ?>
+    <div class="mx-5">
     <table class="table">
         <thead>
             <tr>
@@ -150,10 +154,10 @@ function muestraDetalle($idVenta)
 
         </tbody>
     </table>
-    <!--
-    <a class="btn btn-secondary float-right" target="_blank" href="./pages/imprimirFactura.php?idVenta=<?php echo $idVenta; ?>" 
-    role="button">Imprimir factura <i class="fas fa-file-pdf"></i> </a>
-    -->
+    
+    <a class="btn btn-warning float-right" href="./index.php" 
+    role="button">Compra Realizada | Volver al Inicio</a>
+    </div>
 <?php
 }
 

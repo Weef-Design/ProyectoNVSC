@@ -1,6 +1,7 @@
 create database if not exists backend_NVSC;
 use backend_NVSC;
 
+
 /* SENTENCIAS DDL */
 create table if not exists Usuario(
 ID_Usuario int auto_increment primary key,
@@ -60,19 +61,16 @@ CREATE TABLE Venta(
   ID_Venta int NOT NULL AUTO_INCREMENT,
   ID_Cliente int NOT NULL,
   ID_Pago varchar(255) not null,
-  Fecha datetime NOT NULL,
+  Fecha date,
   NombreTarjeta varchar(255) not null,
-  NumeroTarjeta int not null,
+  NumeroTarjeta varchar(15),
   VencTarjeta varchar(7) not null,
   CVV int not null,
   Estado varchar(32) not null,
   PRIMARY KEY (ID_Venta),
   CONSTRAINT fk_ventaUsuario FOREIGN KEY (ID_Cliente) REFERENCES Usuario(ID_Usuario)
 );
-alter table Venta
-MODIFY COLUMN Fecha date;
-alter table Venta
-MODIFY COLUMN NumeroTarjeta varchar(15);
+
 
 CREATE TABLE detalleVenta (
   ID_detalleVenta int AUTO_INCREMENT,
@@ -82,9 +80,9 @@ CREATE TABLE detalleVenta (
   Precio double NOT NULL,
   Subtotal double NOT NULL,
   PRIMARY KEY (ID_detalleVenta),
-  CONSTRAINT fk_detalleProducto FOREIGN KEY (ID_Producto) REFERENCES Producto (ID_Producto),
   CONSTRAINT fk_detalleVenta FOREIGN KEY (ID_Venta) REFERENCES Venta (ID_Venta)
 );
+
 
 CREATE TABLE datosEnvio (
   ID_datosEnvio int AUTO_INCREMENT,
@@ -131,7 +129,7 @@ INSERT INTO Categoria(Nombre_Categoria)
                
 		-- Ingreso Productos --
 INSERT INTO `producto` (`ID_Producto`, `Nombre_Producto`, `Descripcion`, `Precio`, `Stock`, `Talle`, `Descuento`, `Ruta_Imagen`, `ID_Proveedor`, `ID_Categoria`) 
-	VALUES (NULL, 'Mascara Soldador', 'Mascara de Soldador.', '10000', '15', '', '0', 'MASCARA SOLDADOR $2700.jpg', '1', '3'), 
+	VALUES (NULL, 'Mascara Soldador', 'Mascara de Soldador.', '2000', '15', '', '0', 'MASCARA SOLDADOR $2700.jpg', '1', '3'), 
 			(NULL, 'Arnés', 'Arnés completo con 3 puntos de enganche, regulable en hombros y piernas.', '2920', '20', 'M', '0', 'ARNES $2920.jpg', '2', '1'),
 			(NULL, 'Botas de Lluvia Blanco', 'Producto desarrollado con material maleable, cabedal con 2,7mm de espesor, con diseño que facilita el calzado y descalzar.', '598', '30', '42', '0', 'BOTAS DE LLUVIA $598.jpg', '1', '2'),
 			(NULL, 'Casco de Seguridad', 'Diseño modular que permite el montaje de productos de protección facial, auditiva, ocular y soldadura.\r\nFabricado en polietileno, se distingue por su moderno diseño y excelente terminación.\r\nHebilla trasera para anclaje de mentonera de 3 puntos.\r\nVersiones: Sin ventilación\r\nVisera Frontal de 3,5 cm que permite una óptima visión superior manteniendo las prestaciones de seguridad.', '210', '40', '', '0', 'CASCO DE SEGURIDAD $210.jpg', '2', '3'),
@@ -152,7 +150,7 @@ INSERT INTO `producto` (`ID_Producto`, `Nombre_Producto`, `Descripcion`, `Precio
 	(NULL, 'Pantalón para Operador de Motosierra', 'Pantalón de seguridad hecho en poliester. Con capas internas\r\nde protección en poliester 360º, forro en poliester y algodón.', '4620', '18', 'L', '0', 'PANTALON PARA OPERADOR DE MOTOSIERRA $4620.jpg', '1', '1'),
 	(NULL, 'Polainas', 'Polaina de cuero descarne. Utilizada para proteger al usuario en trabajos de soldadura, chispas y calor generado en este proceso.\r\n Buena resistencia y flexibilidad,lo que permite trabajar en condiciones seguras y cómodas.\r\n', '670', '12', '42', '0', 'POLAINAS $670.jpg', '1', '2'),
 	(NULL, 'Protector Auditivo', 'Suministra protección de manera no invasiva, aislando el oído de la fuente de ruido.\r\n', '650', '12', '', '0', 'PROTECTOR AUDITIVO.jpg', '2', '3'),
-	(NULL, 'Rollo de Cinta Peligro', 'Largo 300 metros Ancho 7.6 cm Peso aprox. 900 gr.', '470', '100', '', '0', 'ROLLO DE CINTA PELIGRO $470.jpg', '2', '3'),
+	(NULL, 'Rollo de Cinta Peligro', 'Largo 300 metros Ancho 7.6 cm Peso aprox. 900 gr.', '470', '100', '', '0', 'ROLLO DE CINTA PELIGRO  $470.jpg', '2', '3'),
 	(NULL, 'Zapato de Seguridad con Puntera', 'Material cuero Puntera pvc Hecho en Brasil.\r\n', '850', '15', '45', '0', 'ZAPATO DE SEGURIDAD CON PUNTERA $850.jpg', '1', '2'),
 	(NULL, 'Zapato de Seguridad sin Puntera Talle 45', 'Talle 45\r\nResistente al impacto hasta 200J. \r\nPlantilla sintética, cosida en sistema strobel antibacteriana. \r\nSuela de PU bidensidad, inyectado directamente en la capellada.', '1050', '16', '45', '0', 'ZAPATO DE SEGURIDAD SIN PUNTERA $1050.png', '1', '2'),
 	(NULL, 'Zapato de Seguridad sin Puntera Talle 44', 'Talle 44\r\nResistente al impacto hasta 200J. \r\nPlantilla sintética, cosida en sistema strobel antibacteriana. \r\nSuela de PU bidensidad, inyectado directamente en la capellada.', '1050', '15', '44', '0', 'ZAPATO DE SEGURIDAD SIN PUNTERA $1050.png', '1', '2');
@@ -185,5 +183,11 @@ FROM Producto GROUP BY Precio limit 10;
 
 -- Cantidad Productos --
 SELECT COUNT(ID_Usuario) AS cantidadUsuarios from Usuario;
+
+-- Filtro Uniformes --
+SELECT ID_Producto, Nombre_Producto, Precio, Ruta_Imagen ,Stock from Producto
+where ID_Categoria=1;
+
+
 
 

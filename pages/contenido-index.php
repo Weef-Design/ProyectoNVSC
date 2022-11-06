@@ -7,16 +7,24 @@
     </div>
     <div class="carousel-inner">
         <div class="carousel-item active">
+            <a href="index.php?modulo=uniformes&idCategoria=1">
             <img src="./admin/dist/img/CAROUSEL UNIFORMES.png" class="d-block w-100" alt="Uniformes">
+            </a>
         </div>
         <div class="carousel-item">
+            <a href="index.php?modulo=calzado&idCategoria=2">
             <img src="./admin/dist/img/CAROUSEL CALZADO.png" class="d-block w-100" alt="Calzado">
+            </a>
         </div>
         <div class="carousel-item">
+            <a href="index.php?modulo=seguridad&idCategoria=3">
             <img src="./admin/dist/img/CAROUSEL SEGURIDAD.png" class="d-block w-100" alt="Seguridad">
+            </a>
         </div>
         <div class="carousel-item">
-            <img src="./admin/dist/img/CAROUSEL SEGURIDAD.png" class="d-block w-100" alt="Otros">
+            <a href="index.php?modulo=otros&idCategoria=4">
+            <img src="./admin/dist/img/CAROUSEL OTROS.png" class="d-block w-100" alt="Otros">
+            </a>
         </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -41,21 +49,21 @@
                         Stock
                         FROM
                         Producto
-                        GROUP BY Precio
+                        GROUP BY ID_Producto
                         limit 10
                         ";
     $res = mysqli_query($con, $query);
     while ($row = mysqli_fetch_assoc($res)) {
 
     ?>
-        <div class="col-lg-3 col-md-6 col-sm-12">
+        <div class="cardIndex col-lg-3 col-md-6 col-sm-12">
             <div class="card border-primary" style="width: 280px; height: 340px">
                 <a href="index.php?modulo=detalleproducto&id=<?php echo $row['ID_Producto'] ?>">
                     <img class="card-img-top img-thumbnail" style="height: 250px" src="./admin/dist/img/products/<?php echo $row['Ruta_Imagen'] ?>" alt="">
                     <div class="card-body">
-                        <h2 class="card-title"><strong><?php echo $row['Nombre_Producto'] ?></strong></h2>
+                        <h2 class="card-title"><strong><?php echo $row['Nombre_Producto'] ?></strong></h2></a>
                         <p class="card-text">$<?php echo $row['Precio'] ?></p>
-                </a>
+                
             </div>
         </div>
 </div>
@@ -84,14 +92,14 @@
     while ($row = mysqli_fetch_assoc($res)) {
 
     ?>
-        <div class="col-lg-3 col-md-6 col-sm-12">
+        <div class="cardIndex col-lg-3 col-md-6 col-sm-12">
             <div class="card border-primary" style="width: 280px; height: 340px">
                 <a href="index.php?modulo=detalleproducto&id=<?php echo $row['ID_Producto'] ?>">
                     <img class="card-img-top img-thumbnail" style="height: 250px" src="./admin/dist/img/products/<?php echo $row['Ruta_Imagen'] ?>" alt="">
                     <div class="card-body">
-                        <h2 class="card-title"><strong><?php echo $row['Nombre_Producto'] ?></strong></h2>
+                        <h2 class="card-title"><strong><?php echo $row['Nombre_Producto'] ?></strong></h2></a>
                         <p class="card-text">$<?php echo $row['Precio'] ?></p>
-                </a>
+                
             </div>
         </div>
 </div>

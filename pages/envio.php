@@ -85,9 +85,9 @@ if (isset($_SESSION['idUsuario'])) {
                     </div>
                 </div>
             </div>
-        </div>
-        <a class="btn btn-warning" href="index.php?modulo=carrito" role="button">Regresar al carrito</a>
-        <button type="submit" class="btn btn-primary float-right" name="guardar" value="guardar">Continuar a Métodos de Pago</button>
+            <a class="btn btn-warning" href="index.php?modulo=carrito" role="button">Regresar al carrito</a>
+            <button type="submit" class="btn btn-warning float-right" name="guardar" value="guardar">Continuar a Métodos de Pago</button>
+        </div>   
     </form>
 <?php
 } else {

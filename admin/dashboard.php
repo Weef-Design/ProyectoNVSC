@@ -162,6 +162,9 @@
     <!-- Content Wrapper. Contains page content -->
     <?php
     }
+      if($modulo==""){
+        include_once "espacioBlanco.php";
+      }
       if($modulo=="estadisticas"){
         include_once "estadisticas.php";
       }

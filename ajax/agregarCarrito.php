@@ -14,7 +14,8 @@
             "nombre"=>$_REQUEST['nombre'],
             "web_path"=>$_REQUEST['web_path'],
             "cantidad"=>$_REQUEST['cantidad'],
-            "precio"=>$_REQUEST['precio']
+            "precio"=>$_REQUEST['precio'],
+            
         );
         array_push($productos,$nuevo);
     }

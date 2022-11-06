@@ -50,6 +50,18 @@
     if ($modulo == "allproductos") {
         include_once "./pages/allproductos.php";
     }
+    if ($modulo == "uniformes") {
+        include_once "./pages/uniformes.php";
+    }
+    if ($modulo == "calzado") {
+        include_once "./pages/calzado.php";
+    }
+    if ($modulo == "seguridad") {
+        include_once "./pages/seguridad.php";
+    }
+    if ($modulo == "otros") {
+        include_once "./pages/otros.php";
+    }
     if ($modulo == "contacto") {
         include_once "./pages/contacto.php";
     }

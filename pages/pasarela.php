@@ -1,6 +1,7 @@
-<form action="index.php?modulo=factura" method="post" id="payment-form">
-    <table class="table table-striped table-inverse" id="tablaPasarela">
-        <thead class="thead-inverse">
+<form class="mx-5 mb-5" action="index.php?modulo=factura" method="post" id="payment-form">
+    <div class="table-responsive">
+    <table class="table table-warning" id="tablaPasarela">
+        <thead>
             <tr>
                 <th>Imagen</th>
                 <th>Nombre</th>
@@ -9,17 +10,17 @@
                 <th>Total</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody class="table-light">
         </tbody>
     </table>
+    </div>
 
-    <div class="form-row">
-        <h4 class="mt3">Elija Método de Pago</h4>
-
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Agregar Datos Tarjeta
-        </button>
+        <div class="float-right mr-5">
+        <h4>Elija Método de Pago</h4>
+            <button type="button" class="btn btn-warning mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <box-icon name='credit-card'></box-icon>Agregar Datos Tarjeta
+            </button>
+        </div>
 
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -39,7 +40,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <label class="form-label" for="numberTarjeta">Número de Tarjeta:</label>
-                                <input type="text" maxlength="16" id="numberTarjeta" name="numberTarjeta" class="form-control" required>
+                                <input type="text" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" placeholder="xxxx xxxx xxxx xxxx" maxlength="16" id="numberTarjeta" name="numberTarjeta" class="form-control" required>
                             </div>
                         </div>
                         <div class="row">
@@ -49,7 +50,7 @@
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label" for="cvvTarjeta">CVV:</label>
-                                <input type="text" maxlength="3" id="cvvTarjeta" name="cvvTarjeta" class="form-control" placeholder="xxx" required>
+                                <input type="text" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" maxlength="3" id="cvvTarjeta" name="cvvTarjeta" class="form-control" placeholder="xxx" required>
                             </div>
                         </div>
                     </div>
@@ -63,7 +64,7 @@
 
         <!-- Used to display form errors. -->
         <div id="card-errors" role="alert"></div>
-    </div>
+    
     <div class="mt-3">
         <a class="btn btn-warning" href="index.php?modulo=envio" role="button">Ir a envio</a>
     </div>

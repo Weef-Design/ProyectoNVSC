@@ -62,7 +62,7 @@
                 <?php
                 } else {
                 ?>
-                    <a href="index.php?modulo=usuario" class="dropdown-item">
+                    <a href="index.php" class="dropdown-item">
                         <box-icon name='user' class="mr-2"></box-icon></i>Hola <?php echo $_SESSION['nombreUsuario']; ?>
                     </a>
                     <div class="dropdown-divider"></div>
@@ -79,7 +79,7 @@
                     ?>
                     <form action="index.php" method="post">
                         <button name="accion" class="btn btn-danger dropdown-item" type="submit" value="cerrar">
-                            <box-icon name='log-out' class="mr-2"></box-icon></i>Cerrar sesión
+                            <box-icon name='log-out' class="mr-2"></box-icon>Cerrar sesión
                         </button>
                     </form>
                 <?php
