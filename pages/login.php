@@ -1,5 +1,7 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -53,17 +55,24 @@
               $_SESSION['tipoUsuario'] = $row['Tipo'];
 
               if ($row['Tipo'] == 'J') {
-
-                header("location: ../admin/dashboard.php?mensaje=Usuario logueado exitosamente");
+          ?>
+                <META HTTP-EQUIV="REFRESH" CONTENT="0;URL=../admin/dashboard.php?mensaje=Usuario logueado exitosamente">
+              <?php
               } elseif ($row['Tipo'] == 'C') {
-                header("location: ../admin/dashboard.php?mensaje=Usuario logueado exitosamente");
+              ?>
+                <META HTTP-EQUIV="REFRESH" CONTENT="0;URL=../admin/dashboard.php?mensaje=Usuario logueado exitosamente">
+              <?php
               } elseif ($row['Tipo'] == 'V') {
-                header("location: ../admin/dashboard.php?mensaje=Usuario logueado exitosamente");
+              ?>
+                <META HTTP-EQUIV="REFRESH" CONTENT="0;URL=../admin/dashboard.php?mensaje=Usuario logueado exitosamente">
+              <?php
               } elseif ($row['Tipo'] == 'U') {
-                header("location: ../index.php?mensaje=Usuario logueado exitosamente");
+              ?>
+                <META HTTP-EQUIV="REFRESH" CONTENT="0;URL=../index.php?mensaje=Usuario logueado exitosamente">
+              <?php
               }
             } else {
-          ?>
+              ?>
               <p style="color: red;">
                 Credenciales no válidas | Usuario no activado.
               </p>

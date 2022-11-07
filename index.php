@@ -1,3 +1,11 @@
+<?php
+    session_start();
+    $accion = $_REQUEST['accion'] ?? '';
+    if ($accion == 'cerrar') {
+        session_destroy();
+        header("Refresh:0");
+    }
+    ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,15 +25,6 @@
     <link rel="stylesheet" href="admin/dist/css/adminlte.min.css">
     <!-- CSS Personalizado -->
     <link rel="stylesheet" href="admin/dist/css/mystyles.css">
-
-    <?php
-    session_start();
-    $accion = $_REQUEST['accion'] ?? '';
-    if ($accion == 'cerrar') {
-        session_destroy();
-        header("Refresh:0");
-    }
-    ?>
 </head>
 
 <body>

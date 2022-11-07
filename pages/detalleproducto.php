@@ -27,7 +27,7 @@ $rowProducto = mysqli_fetch_assoc($resProducto);
                 <div class="py-2 mt-4">
                     <h2 class="mb-0">
                     
-                        $<?php echo $rowProducto['Precio']  ?>
+                        $<?php echo ($rowProducto['Precio'])  ?> 
                     </h2>
                 </div>
 
