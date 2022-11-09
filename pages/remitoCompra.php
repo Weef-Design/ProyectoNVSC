@@ -74,7 +74,7 @@ $rowVenta = mysqli_fetch_assoc($resVenta);
             <tr>
                 <td><?php echo $row['Nombre'] ?></td>
                 <td><?php echo $row['Cantidad'] ?></td>
-                <td><?php echo "$" . $row['Precio']; ?></td>
+                <td><?php echo "$" . $row['Precio'] - ($row['Precio'] * $row['Descuento']) / 100 ?></td>
                 <td><?php echo "$" . $row['Subtotal']; ?></td>
             </tr>
         <?php

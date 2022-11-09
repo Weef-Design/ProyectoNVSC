@@ -16,30 +16,29 @@ $rowProducto = mysqli_fetch_assoc($resProducto);
                     <img src="admin/dist/img/products/<?php echo $rowProducto['Ruta_Imagen'] ?>" class="product-image">
                 </div>
                 <div class="col-12 product-image-thumbs">
-                        <div class="product-image-thumb"><img src="admin/dist/img/products/<?php echo $rowProducto['Ruta_Imagen'] ?>"></div>
+                    <div class="product-image-thumb"><img src="admin/dist/img/products/<?php echo $rowProducto['Ruta_Imagen'] ?>"></div>
                 </div>
             </div>
             <div class="col-12 col-sm-6">
                 <p style="color: #ff9c00"><?php echo $rowProducto['Nombre_Categoria'] ?></p>
                 <h3 class="my-3"><?php echo $rowProducto['Nombre_Producto'] ?></h3>
                 <hr>
-                
+
                 <div class="py-2 mt-4">
-                    <h2 class="mb-0">
-                    
-                        $<?php echo ($rowProducto['Precio'])  ?> 
-                    </h2>
+                    <div class="mb-0">
+                        <h3>
+                            $<?php echo $rowProducto['Precio'] - ($rowProducto['Precio'] * $rowProducto['Descuento']) / 100 ?>
+                            <small class="text-muted"><s>$<?php echo $rowProducto['Precio'] ?></s></small>
+                        </h3>
+                    </div>
+
+
                 </div>
 
                 <p><?php echo $rowProducto['Stock'] ?> disponibles</p>
 
                 <div class="mt-4">
-                    <button class="btn btn-primary btn-lg btn-flat" id="agregarCarrito" 
-                    data-id="<?php echo $_REQUEST['id'] ?>"
-                    data-nombre="<?php echo $rowProducto['Nombre_Producto'] ?>"
-                    data-web_path="./admin/dist/img/products/<?php echo $rowProducto['Ruta_Imagen'] ?>"
-                    data-precio="<?php echo $rowProducto['Precio'] ?>"
-                    >
+                    <button class="btn btn-primary btn-lg btn-flat" id="agregarCarrito" data-id="<?php echo $_REQUEST['id'] ?>" data-nombre="<?php echo $rowProducto['Nombre_Producto'] ?>" data-web_path="./admin/dist/img/products/<?php echo $rowProducto['Ruta_Imagen'] ?>" data-precio="<?php echo $rowProducto['Precio'] ?>">
                         <i class="fas fa-cart-plus fa-lg mr-2"></i>
                         Añadir al Carrito
                     </button>
@@ -51,7 +50,7 @@ $rowProducto = mysqli_fetch_assoc($resProducto);
 
             </div>
         </div>
-        
+
         <div class="row mt-4 mb-6">
             <nav class="w-100">
                 <div class="nav nav-tabs" id="product-tab" role="tablist">
@@ -62,7 +61,7 @@ $rowProducto = mysqli_fetch_assoc($resProducto);
                 <div class="tab-pane fade show active" role="tabpanel" aria-labelledby="product-desc-tab"><?php echo $rowProducto['Descripcion'] ?></div>
             </div>
         </div>
-        
+
     </div>
     <!-- /.card-body -->
 </div>

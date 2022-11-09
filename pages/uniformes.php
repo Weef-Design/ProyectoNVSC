@@ -31,12 +31,7 @@
         $inicioLimite = ($paginaSel - 1) * $elementosPorPagina;
     }
     $limite = " limit $inicioLimite,$elementosPorPagina ";
-    $query = "SELECT 
-                        ID_Producto,
-                        Nombre_Producto,
-                        Precio,
-                        Ruta_Imagen,
-                        Stock
+    $query = "SELECT *
                         FROM
                         Producto
                         $where
@@ -52,7 +47,7 @@
                     <img class="card-img-top img-thumbnail" style="height: 210px" src="./admin/dist/img/products/<?php echo $row['Ruta_Imagen'] ?>" alt="">
                     <div class="card-body">
                         <h2 class="card-title"><strong><?php echo $row['Nombre_Producto'] ?></strong></h2></a>
-                        <p class="card-text">$<?php echo $row['Precio'] ?></p>
+                        <p class="card-text">$<?php echo $row['Precio'] - ($row['Precio'] * $row['Descuento']) / 100 ?></p>
                     
                 
             </div>
