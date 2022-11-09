@@ -37,7 +37,6 @@
                 <span class="badge badge-danger navbar-badge" id="badgeProducto"></span>
             </a>
             <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right" id="listaCarrito">
-
             </ul>
         </li>
         <!-- Sesion Dropdown Menu -->
@@ -96,7 +95,7 @@
 $mensaje = $_REQUEST['mensaje'] ?? '';
 if ($mensaje) {
 ?>
-    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+    <div class="alert alert-warning alert-dismissible text-center fade show" role="alert">
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
         </button>
         <?php echo $mensaje; ?>

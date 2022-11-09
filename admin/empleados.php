@@ -94,7 +94,8 @@ if (isset($_REQUEST['idBorrar'])) {
                                 </div>
                             </div><!-- /.container-fluid -->
                         </section>
-                        <table id="example2" class="table table-bordered table-hover">
+                        <div class="table-responsive">
+                        <table id="example2" class="table table-bordered table-warning">
                             <thead>
                                 <tr class="d-flex">
                                     <th class="col-4">Nombre</th>
@@ -102,7 +103,7 @@ if (isset($_REQUEST['idBorrar'])) {
                                     <th class="col-3">Acciones</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody class="table-light">
                                 <?php
                                 include_once "conectDB.php";
                                 $conex = mysqli_connect($host, $user, $pass, $db);
@@ -117,8 +118,8 @@ if (isset($_REQUEST['idBorrar'])) {
                                         <td class="col-4"><?php echo $row['NombreUsuario'] ?></td>
                                         <td class="col-5"><?php echo $row['Email'] ?></td>
                                         <td class="col-3">
-                                            <a href="dashboard.php?modulo=editEmpleado&id=<?php echo $row['ID_Usuario'] ?>" style="margin-right:5px"><i class="fa fa-pen"></i></a>
-                                            <a href="dashboard.php?modulo=empleados&idBorrar=<?php echo $row['ID_Usuario'] ?>" class="text-danger borrar"><i class="fa fa-user-minus"></i></a>
+                                            <a title="Editar Empleado" href="dashboard.php?modulo=editEmpleado&id=<?php echo $row['ID_Usuario'] ?>" style="margin-right:5px"><i class="fa fa-pen"></i></a>
+                                            <a title="Eliminar Empleado" href="dashboard.php?modulo=empleados&idBorrar=<?php echo $row['ID_Usuario'] ?>" class="text-danger borrar"><i class="fa fa-user-minus"></i></a>
                                         </td>
                                     </tr>
 
@@ -127,7 +128,7 @@ if (isset($_REQUEST['idBorrar'])) {
                                 ?>
                             </tbody>
                         </table>
-
+                        </div>
                         <section class="content-header">
                             <div class="container-fluid">
                                 <div class="row mb-2">
@@ -137,15 +138,16 @@ if (isset($_REQUEST['idBorrar'])) {
                                 </div>
                             </div><!-- /.container-fluid -->
                         </section>
-                        <table class="table table-bordered table-hover">
+                        <div class="table-responsive">
+                        <table class="table table-bordered table-warning">
                             <thead>
-                                <tr class="d-flex">
+                                <tr>
                                     <th class="col-4">Nombre</th>
                                     <th class="col-5">Email</th>
                                     <th class="col-3">Acciones</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody class="table-light">
                                 <?php
                                 include_once "conectDB.php";
                                 $con = mysqli_connect($host, $user, $pass, $db);
@@ -156,12 +158,12 @@ if (isset($_REQUEST['idBorrar'])) {
                                 while ($row = mysqli_fetch_array($res)) {
                                 ?>
 
-                                    <tr class="d-flex">
+                                    <tr>
                                         <td class="col-4"><?php echo $row['NombreUsuario'] ?></td>
                                         <td class="col-5"><?php echo $row['Email'] ?></td>
                                         <td class="col-3">
-                                            <a href="dashboard.php?modulo=editEmpleado&id=<?php echo $row['ID_Usuario'] ?>" style="margin-right:5px"><i class="fa fa-pen"></i></a>
-                                            <a href="dashboard.php?modulo=empleados&idBorrar=<?php echo $row['ID_Usuario'] ?>" class="text-danger borrar"><i class="fa fa-user-minus"></i></a>
+                                            <a title="Editar Empleado" href="dashboard.php?modulo=editEmpleado&id=<?php echo $row['ID_Usuario'] ?>" style="margin-right:5px"><i class="fa fa-pen"></i></a>
+                                            <a title="Eliminar Empleado" href="dashboard.php?modulo=empleados&idBorrar=<?php echo $row['ID_Usuario'] ?>" class="text-danger borrar"><i class="fa fa-user-minus"></i></a>
                                         </td>
                                     </tr>
 
@@ -170,6 +172,7 @@ if (isset($_REQUEST['idBorrar'])) {
                                 ?>
                             </tbody>
                         </table>
+                        </div>
                     </div>
                 </div>
             </div>

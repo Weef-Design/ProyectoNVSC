@@ -1,6 +1,7 @@
 <?php
 include "conectDB.php";
 $con = mysqli_connect($host, $user, $pass, $db);
+mysqli_set_charset($con, "utf8mb4");
 
 if (isset($_REQUEST['agregarProducto'])) {
 

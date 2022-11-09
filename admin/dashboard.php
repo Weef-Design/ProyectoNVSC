@@ -12,7 +12,7 @@
   $modulo=$_REQUEST['modulo']??'';
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
   <meta charset="utf-8">
@@ -40,7 +40,7 @@
   <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
-  <!-- Theme style -->
+  <!-- Alerts -->
   <link rel="stylesheet" href="dist/css/alert.css">
 </head>
 
@@ -72,12 +72,12 @@
     <!-- /.navbar -->
 
     <!-- Main Sidebar Container -->
-    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <aside class="main-sidebar sidebar-dark-warning elevation-4">
       <!-- Brand Logo -->
       <a href="../index.php" class="brand-link">
-        <img src="dist/img/LOGO NATALIA VIERA.png" alt="NataliaVier" class="brand-image"
-          style="opacity: .8">
-        <span class="brand-text font-weight-light">NVSC</span>
+        <img src="dist/img/LOGO NATALIA VIERA II.png" alt="NataliaVier" class="brand-image"
+          style="max-width: 80%">
+        <span class="brand-text font-weight-light">Natalia Viera SC</span>
       </a>
 
       <!-- Sidebar -->
@@ -152,7 +152,7 @@
     <?php
     if(isset($_REQUEST['mensaje'])){
     ?>
-    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
         <span class="sr-only">Cerrar</span>
@@ -193,9 +193,6 @@
 
   <!-- jQuery -->
   <script src="../js/jquery-3.6.0.js"></script>
-  <script src="plugins/jquery/jquery.min.js"></script>
-  <!-- jQuery UI 1.11.4 -->
-  <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
   <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
   <script>
     $.widget.bridge('uibutton', $.ui.button)
@@ -209,8 +206,6 @@
   <!-- JQVMap -->
   <script src="plugins/jqvmap/jquery.vmap.min.js"></script>
   <script src="plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
-  <!-- jQuery Knob Chart -->
-  <script src="plugins/jquery-knob/jquery.knob.min.js"></script>
   <!-- daterangepicker -->
   <script src="plugins/moment/moment.min.js"></script>
   <script src="plugins/daterangepicker/daterangepicker.js"></script>

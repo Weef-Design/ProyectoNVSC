@@ -40,7 +40,7 @@ if (isset($_SESSION['idUsuario'])) {
     <form method="post">
         <div class="container mt-3">
             <div class="row">
-                <div class="col-6">
+                <div class="col-lg-6 col-md-12 col-sm-12">
                     <h3>Datos del cliente</h3>
                     <div class="form-group">
                         <label for="nombreCli">Nombre</label>
@@ -59,7 +59,7 @@ if (isset($_SESSION['idUsuario'])) {
                         <input type="text" name="telefonoCli" id="telefonoCli" class="form-control" value="<?php echo $rowCli['Telefono'] ?>">
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-lg-6 col-md-12 col-sm-12">
                     <h3>Datos de envío de compra</h3>
                     <div class="form-group">
                         <label for="nombreRec">Nombre</label>

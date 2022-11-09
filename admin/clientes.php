@@ -51,9 +51,10 @@ if (isset($_REQUEST['idEstadoII'])) {
                                 </div>
                             </div><!-- /.container-fluid -->
                         </section>
-                        <table class="table table-bordered table-hover">
+                        <div class="table-responsive">
+                        <table class="table table-bordered table-warning">
                             <thead>
-                                <tr class="d-flex">
+                                <tr>
                                     <th class="col-1">Estado</th>
                                     <th class="col-3">Nombre</th>
                                     <th class="col-4">Email</th>
@@ -62,7 +63,7 @@ if (isset($_REQUEST['idEstadoII'])) {
                                     <th class="col-1">Desactivar</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody class="table-light">
                                 <?php
                                 include_once "conectDB.php";
                                 $con = mysqli_connect($host, $user, $pass, $db);
@@ -73,16 +74,16 @@ if (isset($_REQUEST['idEstadoII'])) {
                                 while ($row = mysqli_fetch_array($res)) {
                                 ?>
 
-                                    <tr class="d-flex">
+                                    <tr>
                                         <td class="col-1"><?php echo $row['Estado'] ?></td>
                                         <td class="col-3"><?php echo $row['NombreUsuario'] ?></td>
                                         <td class="col-4"><?php echo $row['Email'] ?></td>
                                         <td class="col-2"><?php echo $row['FechaRegistro'] ?></td>
                                         <td class="col-1">
-                                            <a href="dashboard.php?modulo=clientes&idEstado=<?php echo $row['ID_Usuario'] ?>" style="margin-right:5px"><i class="fa fa-check text-success"></i></a>
+                                            <a title="Activar Usuario" href="dashboard.php?modulo=clientes&idEstado=<?php echo $row['ID_Usuario'] ?>" style="margin-right:5px"><i class="fa fa-check text-success"></i></a>
                                         </td>
                                         <td class="col-1">
-                                            <a href="dashboard.php?modulo=clientes&idEstadoII=<?php echo $row['ID_Usuario'] ?>" class="text-danger offUsuario"><i class="fa fa-minus text-danger"></i></a>
+                                            <a title="Desactivar Usuario" href="dashboard.php?modulo=clientes&idEstadoII=<?php echo $row['ID_Usuario'] ?>" class="text-danger offUsuario"><i class="fa fa-minus text-danger"></i></a>
                                         </td>
                                     </tr>
 
@@ -91,6 +92,7 @@ if (isset($_REQUEST['idEstadoII'])) {
                                 ?>
                             </tbody>
                         </table>
+                        </div>
                     </div>
                 </div>
             </div>

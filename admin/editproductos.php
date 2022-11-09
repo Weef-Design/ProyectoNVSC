@@ -1,6 +1,8 @@
 <?php
 include_once "conectDB.php";
 $con = mysqli_connect($host, $user, $pass, $db);
+mysqli_set_charset($con, "utf8mb4");
+
 if (isset($_REQUEST['editProducto'])) {
 
   $productNombre = mysqli_real_escape_string($con, $_REQUEST['productNombre'] ?? '');

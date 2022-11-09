@@ -112,9 +112,10 @@ if (isset($_REQUEST['idBorrar'])) {
                                 </div>
                             </div><!-- /.container-fluid -->
                         </section>
-                        <table id="example2" class="table table-bordered table-hover">
+                        <div class="table-responsive">
+                        <table id="example2" class="table table-bordered table-warning">
                             <thead>
-                                <tr class="d-flex">
+                                <tr>
                                     <th class="col-3">Nombre</th>
                                     <th class="col-1">Precio</th>
                                     <th class="col-1">Stock</th>
@@ -124,7 +125,7 @@ if (isset($_REQUEST['idBorrar'])) {
                                     <th class="col-2">Acciones</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody class="table-light">
                             <?php
                                 include_once "conectDB.php";
                                 $con = mysqli_connect($host, $user, $pass, $db);
@@ -137,7 +138,7 @@ if (isset($_REQUEST['idBorrar'])) {
                                 while ($row = mysqli_fetch_array($res)) {
                                 ?>
 
-                                    <tr class="d-flex">
+                                    <tr>
                                         <td class="col-3"><?php echo $row['Nombre_Producto'] ?></td>
                                         <td class="col-1">$<?php echo $row['Precio'] ?></td>
                                         <td class="col-1"><?php echo $row['Stock'] ?></td>
@@ -155,7 +156,7 @@ if (isset($_REQUEST['idBorrar'])) {
                                 ?>
                             </tbody>
                         </table>
-
+                        </div>
                     </div>
                 </div>
             </div>

@@ -59,7 +59,8 @@ $rowVenta = mysqli_fetch_assoc($resVenta);
                     P.Nombre_Producto,
                     Dv.Cantidad,
                     Dv.Precio,
-                    Dv.SubTotal
+                    Dv.SubTotal,
+                    P.Descuento
                     FROM
                     Venta AS V
                     INNER JOIN detalleVenta AS Dv ON Dv.ID_Venta = V.ID_Venta
@@ -74,7 +75,7 @@ $rowVenta = mysqli_fetch_assoc($resVenta);
             <tr>
                 <td><?php echo $row['Nombre'] ?></td>
                 <td><?php echo $row['Cantidad'] ?></td>
-                <td><?php echo "$" . $row['Precio'] - ($row['Precio'] * $row['Descuento']) / 100 ?></td>
+                <td><?php echo "$" . $row['Precio'] ?></td>
                 <td><?php echo "$" . $row['Subtotal']; ?></td>
             </tr>
         <?php

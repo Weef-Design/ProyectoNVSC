@@ -1,8 +1,8 @@
 <?php
 
     $host="localhost";
-    $user="root";
-    $pass="";
-    $db="backend_nvsc";
+    $user="c2191745_NVSC";
+    $pass="40TEdivuma";
+    $db="c2191745_NVSC";
 
 ?>

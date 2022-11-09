@@ -68,23 +68,22 @@ if (isset($_REQUEST['idEstadoEnvioiii'])) {
                                 </div>
                             </div><!-- /.container-fluid -->
                         </section>
-                        <div>
-                            <a href="PAGO CONFIRMADO"></a>
-                            <a href="EN CAMINO A DEPOSITO"></a>
-                            <a href="EN CAMINO AL DOMICILIO"></a>
-                            <a href="PAQUETE ENTREGRADO"></a>
-                        </div>
-                        <table class="table table-bordered table-hover">
+                        <div class="table-responsive">
+                        <table class="table table-bordered table-warning">
                             <thead>
-                                <tr class="d-flex">
+                                <tr>
                                     <th class="col-2">Estado Envío</th>
-                                    <th class="col-4">Nombre Cliente</th>
+                                    <th class="col-2">Nombre Cliente</th>
                                     <th class="col-2">Fecha Compra</th>
                                     <th class="col-1">Subtotal</th>
-                                    <th class="col-3">Acciones</th>
+                                    <th class="col-1">Acciones</th>
+                                    <th class="col-1"></th>
+                                    <th class="col-1"></th>
+                                    <th class="col-1"></th>
+                                    <th class="col-1"></th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody class="table-light">
                                 <?php
                                 include_once "conectDB.php";
                                 $con = mysqli_connect($host, $user, $pass, $db);
@@ -106,17 +105,33 @@ if (isset($_REQUEST['idEstadoEnvioiii'])) {
 
                                 while ($row = mysqli_fetch_array($res)) {
                                 ?>
-                                    <tr class="d-flex">
+                                    <tr>
                                         <td class="col-2"><?php echo $row['Estado'] ?></td>
-                                        <td class="col-4"><?php echo $row['NombreUsuario'] ?></td>
+                                        <td class="col-2"><?php echo $row['NombreUsuario'] ?></td>
                                         <td class="col-2"><?php echo $row['Fecha'] ?></td>
                                         <td class="col-1">$<?php echo $row['SubTotal'] ?></td>
-                                        <td class="col-3">
-                                            <a href="dashboard.php?modulo=ventas&idEstadoEnvio=<?php echo $row['ID_Venta'] ?>" style="margin-right:5px"><box-icon type='solid' name='truck'></box-icon></a>
-                                            -->
-                                            <a href="dashboard.php?modulo=ventas&idEstadoEnvioii=<?php echo $row['ID_Venta'] ?>" style="margin-right:5px"><box-icon type='solid' name='package'></box-icon></a>
-                                            -->
-                                            <a href="dashboard.php?modulo=ventas&idEstadoEnvioiii=<?php echo $row['ID_Venta'] ?>" style="margin-right:5px"><box-icon type='solid' name='home'></box-icon></a>
+                                        <td class="col-1">
+                                            <a title="Cambiar a: En Camino al deposito" href="dashboard.php?modulo=ventas&idEstadoEnvio=<?php echo $row['ID_Venta'] ?>" style="margin-right:5px">
+                                            <box-icon name='truck' type='solid' color='#ff993f' ></box-icon>
+                                            </a>
+                                        </td>
+                                        <td class="col-1">
+                                            <box-icon name='chevron-right'></box-icon>
+                                            <box-icon name='chevron-right'></box-icon>
+                                        </td>
+                                        <td class="col-1">
+                                            <a title="Cambiar a: Pronto para Entrega" href="dashboard.php?modulo=ventas&idEstadoEnvioii=<?php echo $row['ID_Venta'] ?>" style="margin-right:5px">
+                                            <box-icon name='package' color='#ff993f' ></box-icon>
+                                            </a>  
+                                        </td>
+                                        <td class="col-1">
+                                            <box-icon name='chevron-right'></box-icon>
+                                            <box-icon name='chevron-right'></box-icon>
+                                        </td>
+                                        <td class="col-1">
+                                            <a title="Cambiar a: Paquete Entregado" href="dashboard.php?modulo=ventas&idEstadoEnvioiii=<?php echo $row['ID_Venta'] ?>" style="margin-right:5px">
+                                            <box-icon name='home' type='solid' color='#ff993f' ></box-icon>
+                                            </a>  
                                         </td>
                                     </tr>
 
@@ -125,6 +140,7 @@ if (isset($_REQUEST['idEstadoEnvioiii'])) {
                                 ?>
                             </tbody>
                         </table>
+                        </div>
                     </div>
                 </div>
             </div>

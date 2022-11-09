@@ -16,9 +16,9 @@
     </div>
 
         <div class="float-right mr-5">
-        <h4>Elija Método de Pago</h4>
+        <h4><box-icon name='credit-card'></box-icon> Elija Método de Pago</h4>
             <button type="button" class="btn btn-warning mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            <box-icon name='credit-card'></box-icon>Agregar Datos Tarjeta
+            Agregar Datos Tarjeta
             </button>
         </div>
 
@@ -56,7 +56,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="submit" name="finCompra" class="btn btn-primary">Pagar</button>
+                        <button type="submit" name="finCompra" class="btn btn-warning">Pagar</button>
                     </div>
                 </div>
             </div>

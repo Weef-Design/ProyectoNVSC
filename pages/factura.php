@@ -33,18 +33,19 @@ if (isset($_REQUEST['finCompra'])) {
     $resDetalle = mysqli_query($con, $queryDetalle);
     if ($resVenta && $resDetalle) {
 ?>
-        <div class="alert alert-primary alert-dismissible fade show" role="alert">
+        <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
             </button>
             Compra realizada con éxito.
         </div>
-        <div class="row">
-            <div class="col-6">
+        <div class="row mx-5">
+            <div class="col-lg-6 col-md-12 col-sm-12">
                 <?php muestraRecibe($id); ?>
             </div>
-            <div class="col-6">
+            <div class="col-lg-6 col-md-12 col-sm-12">
                 <?php muestraDetalle($id); ?>
             </div>
+            <h1 class="text-center my-5">¡GRACIAS POR SU COMPRA!</h1>
         </div>
     <?php
         borrarCarrito();
@@ -69,11 +70,11 @@ function borrarCarrito()
 function muestraRecibe($idVenta)
 {
 ?>
-    <div class="mx-5">
-    <table class="table mx-5">
+    <div class="table-responsive">
+    <table class="table table-warning">
         <thead>
             <tr>
-                <th colspan="3" class="text-center">Recibe el Producto:</th>
+                <th colspan="4" class="text-center">Recibe el Producto:</th>
             </tr>
             <tr>
                 <th>Nombre</th>
@@ -82,7 +83,7 @@ function muestraRecibe($idVenta)
                 <th>Teléfono</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody class="table-light">
             <?php
             global $con;
             $queryRecibe = "SELECT Nombre,Email,Direccion,Telefono 
@@ -99,18 +100,17 @@ function muestraRecibe($idVenta)
             </tr>
         </tbody>
     </table>
-    <h1 class="text-center mt-5">GRACIAS POR SU COMPRA</h1>
     </div>
 <?php
 }
 function muestraDetalle($idVenta)
 {
 ?>
-    <div class="mx-5">
-    <table class="table">
+    <div class="table-responsive">
+    <table class="table table-warning">
         <thead>
             <tr>
-                <th colspan="3" class="text-center">Detalle de venta</th>
+                <th colspan="4" class="text-center">Detalle de venta</th>
             </tr>
             <tr>
                 <th>Nombre</th>
@@ -119,14 +119,15 @@ function muestraDetalle($idVenta)
                 <th>SubTotal</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody class="table-light">
             <?php
             global $con;
             $queryDetalle = "SELECT
                     P.Nombre_Producto,
                     Dv.Cantidad,
                     Dv.Precio,
-                    Dv.SubTotal
+                    Dv.SubTotal,
+                    P.Descuento
                     FROM
                     Venta AS V
                     INNER JOIN detalleVenta AS Dv ON Dv.ID_Venta = V.ID_Venta
@@ -141,7 +142,7 @@ function muestraDetalle($idVenta)
                 <tr>
                     <td><?php echo $row['Nombre_Producto'] ?></td>
                     <td><?php echo $row['Cantidad'] ?></td>
-                    <td>$<?php echo $row['Precio']-($row['Precio']*$row['Descuento'])/100 ?></td>
+                    <td>$<?php echo $row['Precio'] ?></td>
                     <td>$<?php echo $row['SubTotal'] ?></td>
                 </tr>
             <?php
@@ -154,10 +155,9 @@ function muestraDetalle($idVenta)
 
         </tbody>
     </table>
-    
+    </div>
     <a class="btn btn-warning float-right" href="./index.php" 
     role="button">Compra Realizada | Volver al Inicio</a>
-    </div>
 <?php
 }
 

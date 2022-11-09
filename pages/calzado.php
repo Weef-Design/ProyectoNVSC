@@ -1,9 +1,9 @@
 <ul class="filtros">
-<li><a href="index.php?modulo=allproductos"><img class="mr-2" src="./admin/dist/img/grid.png" alt="Uniformes" style="width: 22px">Todos</a></li>
-<li><a href="index.php?modulo=uniformes&idCategoria=1"><img class="mr-1" src="./admin/dist/img/ropa-protectora.png" alt="Uniformes" style="width: 22px">Uniformes</a></li>
-<li><a href="index.php?modulo=calzado&idCategoria=2"><img class="mr-1" src="./admin/dist/img/zapato.png" alt="Uniformes" style="width: 22px">Calzado</a></li>
-<li><a href="index.php?modulo=seguridad&idCategoria=3"><img class="mr-1" src="./admin/dist/img/casco.png" alt="Uniformes" style="width: 22px">Seguridad</a></li>
-<li><a href="index.php?modulo=otros&idCategoria=4"><img class="mr-1" src="./admin/dist/img/more-information.png" alt="Uniformes" style="width: 22px">Otros</a></li>
+<a href="index.php?modulo=allproductos"><li><img class="mr-2" src="./admin/dist/img/grid.png" alt="Uniformes" style="width: 22px">Todos</li></a>
+<a href="index.php?modulo=uniformes&idCategoria=1"><li><img class="mr-1" src="./admin/dist/img/ropa-protectora.png" alt="Uniformes" style="width: 22px">Uniformes</li></a>
+<a href="index.php?modulo=calzado&idCategoria=2"><li><img class="mr-1" src="./admin/dist/img/zapato.png" alt="Uniformes" style="width: 22px">Calzado</li></a>
+<a href="index.php?modulo=seguridad&idCategoria=3"><li><img class="mr-1" src="./admin/dist/img/casco.png" alt="Uniformes" style="width: 22px">Seguridad</li></a>
+<a href="index.php?modulo=otros&idCategoria=4"><li><img class="mr-1" src="./admin/dist/img/more-information.png" alt="Uniformes" style="width: 22px">Otros</li></a>
 </ul>
 <div class="allProducts row mt-1">
 <?php
@@ -48,7 +48,7 @@
                     <img class="card-img-top img-thumbnail" style="height: 210px" src="./admin/dist/img/products/<?php echo $row['Ruta_Imagen'] ?>" alt="">
                     <div class="card-body">
                         <h2 class="card-title"><strong><?php echo $row['Nombre_Producto'] ?></strong></h2></a>
-                        <p class="card-text">$<?php echo $row['Precio'] - ($row['Precio'] * $row['Descuento']) / 100 ?></p>
+                        <p class="card-text">$<?php echo $row['Precio'] ?></p>
                     
                 
             </div>

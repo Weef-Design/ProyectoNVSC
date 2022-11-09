@@ -58,7 +58,7 @@
                     <img class="card-img-top img-thumbnail" style="height: 250px" src="./admin/dist/img/products/<?php echo $row['Ruta_Imagen'] ?>" alt="">
                     <div class="card-body">
                         <h2 class="card-title"><strong><?php echo $row['Nombre_Producto'] ?></strong></h2></a>
-                        <p class="card-text">$<?php echo $row['Precio']-($row['Precio']*$row['Descuento'])/100 ?></p>
+                        <p class="card-text">$<?php echo $row['Precio'] ?></p>
                 
             </div>
         </div>

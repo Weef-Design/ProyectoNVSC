@@ -20,15 +20,15 @@ $rowProducto = mysqli_fetch_assoc($resProducto);
                 </div>
             </div>
             <div class="col-12 col-sm-6">
-                <p style="color: #ff9c00"><?php echo $rowProducto['Nombre_Categoria'] ?></p>
+                <p style="color: #ff9c00"><a style="color: black;" href="index.php?modulo=allproductos">Productos</a> > <?php echo $rowProducto['Nombre_Categoria'] ?></p>
                 <h3 class="my-3"><?php echo $rowProducto['Nombre_Producto'] ?></h3>
                 <hr>
 
                 <div class="py-2 mt-4">
                     <div class="mb-0">
                         <h3>
-                            $<?php echo $rowProducto['Precio'] - ($rowProducto['Precio'] * $rowProducto['Descuento']) / 100 ?>
-                            <small class="text-muted"><s>$<?php echo $rowProducto['Precio'] ?></s></small>
+                            $<?php echo $rowProducto['Precio']?>
+                            
                         </h3>
                     </div>
 
@@ -38,8 +38,8 @@ $rowProducto = mysqli_fetch_assoc($resProducto);
                 <p><?php echo $rowProducto['Stock'] ?> disponibles</p>
 
                 <div class="mt-4">
-                    <button class="btn btn-primary btn-lg btn-flat" id="agregarCarrito" data-id="<?php echo $_REQUEST['id'] ?>" data-nombre="<?php echo $rowProducto['Nombre_Producto'] ?>" data-web_path="./admin/dist/img/products/<?php echo $rowProducto['Ruta_Imagen'] ?>" data-precio="<?php echo $rowProducto['Precio'] ?>">
-                        <i class="fas fa-cart-plus fa-lg mr-2"></i>
+                    <button class="btn btn-warning rounded btn-lg btn-flat" id="agregarCarrito" data-id="<?php echo $_REQUEST['id'] ?>" data-nombre="<?php echo $rowProducto['Nombre_Producto'] ?>" data-web_path="./admin/dist/img/products/<?php echo $rowProducto['Ruta_Imagen'] ?>" data-precio="<?php echo $rowProducto['Precio'] ?>">
+                        <box-icon name='cart-add'></box-icon>
                         Añadir al Carrito
                     </button>
                 </div>
